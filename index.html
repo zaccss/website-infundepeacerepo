@@ -533,6 +533,7 @@ body.en [data-es] { display:none; }
 </style>
 </head>
 <body class="en">
+<div id="main-page">
 
 <!-- ══ NAV ══ -->
 <nav>
@@ -958,36 +959,32 @@ body.en [data-es] { display:none; }
   </div>
 </section>
 
-<!-- ══ DONATE ══ -->
+<!-- ══ DONATE CTA BANNER ══ -->
 <section id="donate" class="vol-bg">
   <div class="vol-inner">
-    <h2 class="reveal">
-      <span data-en>Every dollar, every hour, every skill matters.</span>
-      <span data-es>Cada dólar, cada hora, cada habilidad importa.</span>
-    </h2>
-    <div class="vol-btns reveal d1">
-      <a class="btn-dark" href="#"><span data-en>Make a Donation</span><span data-es>Hacer una Donación</span></a>
-      <a class="btn-od"   href="#"><span data-en>Volunteer With Us</span><span data-es>Voluntariado</span></a>
+    <div>
+      <h2 class="reveal">
+        <span data-en>Your support sets people free.</span>
+        <span data-es>Tu apoyo libera personas.</span>
+      </h2>
+      <p class="reveal d1" style="font-size:15px;color:rgba(0,0,0,0.55);margin-top:0.75rem;max-width:460px;line-height:1.7;">
+        <span data-en>Every dollar goes directly toward legal fees, habeas corpus filings, asylum court costs, and emergency support for families in crisis.</span>
+        <span data-es>Cada dólar va directamente a honorarios legales, presentaciones de habeas corpus, costos judiciales de asilo y apoyo de emergencia para familias en crisis.</span>
+      </p>
     </div>
-  </div>
-</section>
-
-<!-- ══ PARTNERS ══ -->
-<section class="partners-bg">
-  <div class="partners-inner">
-    <span class="partners-label"><span data-en>In partnership with</span><span data-es>En asociación con</span></span>
-    <div class="partner-list">
-      <span class="partner-pill">Plymouth Church UCC</span>
-      <span class="partner-pill">Fairwood Community UMC</span>
-      <span class="partner-pill">El Dios Viviente UMC</span>
-      <span class="partner-pill">Gethsemane Lutheran</span>
-      <span class="partner-pill">Entrehermanos</span>
+    <div class="vol-btns reveal d1">
+      <a class="btn-dark" href="#" onclick="showPage('donate-page');return false;">
+        <span data-en>Donate Now</span><span data-es>Donar Ahora</span>
+      </a>
+      <a class="btn-od" href="#" onclick="showPage('volunteer-page');return false;">
+        <span data-en>Volunteer With Us</span><span data-es>Ser Voluntario</span>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- ══ FOOTER ══ -->
-<footer>
+<footer id="main-footer">
   <div class="footer-left">
     <svg viewBox="0 0 28 21" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:22px;border-radius:5px;flex-shrink:0;box-shadow:0 2px 8px rgba(232,240,0,0.3)">
       <rect width="28" height="21" fill="#E8F000"/>
@@ -1011,14 +1008,547 @@ body.en [data-es] { display:none; }
   <div class="footer-right">© 2025 Paz y Dignidad · <span data-en>All Rights Reserved</span><span data-es>Todos los Derechos Reservados</span></div>
 </footer>
 
+</div><!-- /#main-page -->
+
+
+<!-- ════════════════════════════════════════════
+     DONATE PAGE
+════════════════════════════════════════════ -->
+<div id="donate-page" class="subpage" style="display:none;">
+
+<div class="subpage-nav">
+  <a class="logo-wrap" href="#" onclick="showPage('main-page');return false;">
+    <div class="logo-mark">
+      <svg viewBox="0 0 38 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:38px;height:28px;">
+        <rect width="38" height="28" fill="#E8F000"/>
+        <polygon points="2,25 8,4 11,7"  fill="#9DC714" opacity="0.9"/>
+        <polygon points="5,25 10,3 13,7" fill="#c8d200" opacity="0.7"/>
+        <polygon points="8,25 12,3 15,7" fill="#9DC714" opacity="0.55"/>
+        <polygon points="11,25 15,4 17,8" fill="#b2c200" opacity="0.45"/>
+        <polygon points="15,8 29,8 24,17 15,17" fill="#1c1c1e"/>
+        <polygon points="20,8 36,5 32,14 20,15" fill="#2c2c2c"/>
+        <circle cx="28" cy="7" r="3.8" fill="#1c1c1e"/>
+        <circle cx="29.5" cy="6.2" r="1" fill="#E8F000"/>
+        <polygon points="31,7.5 37,6.5 31,9.2" fill="#9DC714"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">Paz y Dignidad</span>
+      <span class="logo-sub">Human Rights · Int'l Foundation</span>
+    </div>
+  </a>
+  <button class="subpage-back" onclick="showPage('main-page')">← <span data-en>Back to site</span><span data-es>Volver al sitio</span></button>
+</div>
+
+<div class="subpage-body">
+  <div class="donate-layout">
+
+    <!-- LEFT: context -->
+    <div class="donate-left">
+      <div class="donate-eyebrow"><span data-en>Make a Difference</span><span data-es>Marca la Diferencia</span></div>
+      <h1 class="donate-h1">
+        <span data-en>Freedom costs money.<br>You can help pay for it.</span>
+        <span data-es>La libertad tiene un costo.<br>Tú puedes ayudar a pagarlo.</span>
+      </h1>
+      <p class="donate-desc">
+        <span data-en>Legal fees, court filing costs, and emergency support add up fast. Every contribution — no matter the size — goes directly toward fighting for someone's release.</span>
+        <span data-es>Los honorarios legales, los costos de presentación judicial y el apoyo de emergencia se acumulan rápidamente. Cada contribución — sin importar el tamaño — va directamente a luchar por la libertad de alguien.</span>
+      </p>
+
+      <div class="impact-list">
+        <div class="impact-item">
+          <div class="impact-amt">$25</div>
+          <div class="impact-txt"><span data-en>Covers court filing fees for one habeas corpus petition</span><span data-es>Cubre los costos de presentación judicial para una petición de habeas corpus</span></div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-amt">$75</div>
+          <div class="impact-txt"><span data-en>Funds translation services for a detained individual's hearing</span><span data-es>Financia servicios de traducción para la audiencia de una persona detenida</span></div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-amt">$150</div>
+          <div class="impact-txt"><span data-en>Helps cover asylum application fees for one family</span><span data-es>Ayuda a cubrir los costos de solicitud de asilo para una familia</span></div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-amt">$500</div>
+          <div class="impact-txt"><span data-en>Supports one full federal court appeal for a detained immigrant</span><span data-es>Apoya una apelación federal completa para un inmigrante detenido</span></div>
+        </div>
+      </div>
+
+      <div class="donate-note">
+        <span data-en>⚠️ <strong>Please note:</strong> Your donation helps us appeal cases, pay for habeas corpus filings, cover asylum court fees, and provide emergency support for families in detention. Paz y Dignidad is a community-run organization — every dollar is used directly in the field.</span>
+        <span data-es>⚠️ <strong>Nota:</strong> Tu donación nos ayuda a apelar casos, pagar presentaciones de habeas corpus, cubrir costos judiciales de asilo y brindar apoyo de emergencia a familias detenidas. Paz y Dignidad es una organización administrada por la comunidad — cada dólar se usa directamente en el campo.</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: form -->
+    <div class="donate-right">
+      <div class="donate-form-card" id="donate-form-card">
+
+        <div class="form-section-label"><span data-en>Choose an amount</span><span data-es>Elige un monto</span></div>
+        <div class="amount-grid">
+          <button class="amt-btn" onclick="selectAmt(this,'25')">$25</button>
+          <button class="amt-btn" onclick="selectAmt(this,'75')">$75</button>
+          <button class="amt-btn active" onclick="selectAmt(this,'150')">$150</button>
+          <button class="amt-btn" onclick="selectAmt(this,'500')">$500</button>
+        </div>
+        <div class="custom-amt-wrap">
+          <span class="currency-sym">$</span>
+          <input type="number" id="customAmt" class="custom-amt-input" placeholder="Other amount" min="1" oninput="clearAmtBtns()" />
+        </div>
+
+        <div class="freq-toggle">
+          <button class="freq-btn active" id="freqOnce" onclick="setFreq('once',this)"><span data-en>One-time</span><span data-es>Una vez</span></button>
+          <button class="freq-btn" id="freqMonthly" onclick="setFreq('monthly',this)"><span data-en>Monthly</span><span data-es>Mensual</span></button>
+        </div>
+
+        <div class="form-divider"></div>
+        <div class="form-section-label"><span data-en>Your information</span><span data-es>Tu información</span></div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label"><span data-en>First name</span><span data-es>Nombre</span></label>
+            <input type="text" class="field-input" placeholder="Maria" autocomplete="given-name"/>
+          </div>
+          <div class="field-group">
+            <label class="field-label"><span data-en>Last name</span><span data-es>Apellido</span></label>
+            <input type="text" class="field-input" placeholder="Lopez" autocomplete="family-name"/>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Email</label>
+          <input type="email" class="field-input" placeholder="maria@example.com" autocomplete="email"/>
+        </div>
+
+        <div class="form-divider"></div>
+        <div class="form-section-label"><span data-en>Payment details</span><span data-es>Datos de pago</span></div>
+
+        <div class="field-group">
+          <label class="field-label"><span data-en>Card number</span><span data-es>Número de tarjeta</span></label>
+          <div class="card-input-wrap">
+            <input type="text" class="field-input" id="cardNum" placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)" autocomplete="cc-number"/>
+            <div class="card-icons">
+              <span class="card-icon" id="ci-visa">VISA</span>
+              <span class="card-icon" id="ci-mc">MC</span>
+              <span class="card-icon" id="ci-amex">AMEX</span>
+            </div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label"><span data-en>Expiry</span><span data-es>Vencimiento</span></label>
+            <input type="text" class="field-input" placeholder="MM / YY" maxlength="7" oninput="fmtExpiry(this)" autocomplete="cc-exp"/>
+          </div>
+          <div class="field-group">
+            <label class="field-label">CVV</label>
+            <input type="text" class="field-input" placeholder="•••" maxlength="4" autocomplete="cc-csc"/>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label"><span data-en>Name on card</span><span data-es>Nombre en la tarjeta</span></label>
+          <input type="text" class="field-input" placeholder="Maria Lopez" autocomplete="cc-name"/>
+        </div>
+
+        <button class="donate-submit" onclick="submitDonate()">
+          <span id="donate-btn-text"><span data-en>Donate</span><span data-es>Donar</span> <span id="donate-amt-label">$150</span></span>
+          <span id="donate-spinner" style="display:none;">⏳</span>
+        </button>
+
+        <div class="secure-note">
+          🔒 <span data-en>Demo only — no real payment processed. Secure payment integration coming soon.</span><span data-es>Solo demostración — no se procesa ningún pago real. Integración de pagos seguros próximamente.</span>
+        </div>
+      </div>
+
+      <!-- success state -->
+      <div class="donate-success" id="donate-success" style="display:none;">
+        <div class="success-icon">✅</div>
+        <h2 class="donate-h1" style="font-size:2rem;margin-bottom:0.75rem;"><span data-en>Thank you.</span><span data-es>Gracias.</span></h2>
+        <p style="color:var(--gray);font-size:15px;line-height:1.7;max-width:360px;margin:0 auto 1.5rem;">
+          <span data-en>Your contribution helps us fight for someone's freedom. We'll send a confirmation to your email.</span>
+          <span data-es>Tu contribución nos ayuda a luchar por la libertad de alguien. Enviaremos una confirmación a tu correo.</span>
+        </p>
+        <button class="donate-submit" style="max-width:260px;margin:0 auto;" onclick="showPage('main-page')">
+          <span data-en>Back to site</span><span data-es>Volver al sitio</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="subpage-footer">
+  <span>© 2025 Paz y Dignidad Human Rights International Foundation</span>
+  <span><span data-en>All Rights Reserved</span><span data-es>Todos los Derechos Reservados</span></span>
+</footer>
+
+</div><!-- /#donate-page -->
+
+
+<!-- ════════════════════════════════════════════
+     VOLUNTEER PAGE
+════════════════════════════════════════════ -->
+<div id="volunteer-page" class="subpage" style="display:none;">
+
+<div class="subpage-nav">
+  <a class="logo-wrap" href="#" onclick="showPage('main-page');return false;">
+    <div class="logo-mark">
+      <svg viewBox="0 0 38 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:38px;height:28px;">
+        <rect width="38" height="28" fill="#E8F000"/>
+        <polygon points="2,25 8,4 11,7"  fill="#9DC714" opacity="0.9"/>
+        <polygon points="5,25 10,3 13,7" fill="#c8d200" opacity="0.7"/>
+        <polygon points="8,25 12,3 15,7" fill="#9DC714" opacity="0.55"/>
+        <polygon points="11,25 15,4 17,8" fill="#b2c200" opacity="0.45"/>
+        <polygon points="15,8 29,8 24,17 15,17" fill="#1c1c1e"/>
+        <polygon points="20,8 36,5 32,14 20,15" fill="#2c2c2c"/>
+        <circle cx="28" cy="7" r="3.8" fill="#1c1c1e"/>
+        <circle cx="29.5" cy="6.2" r="1" fill="#E8F000"/>
+        <polygon points="31,7.5 37,6.5 31,9.2" fill="#9DC714"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">Paz y Dignidad</span>
+      <span class="logo-sub">Human Rights · Int'l Foundation</span>
+    </div>
+  </a>
+  <button class="subpage-back" onclick="showPage('main-page')">← <span data-en>Back to site</span><span data-es>Volver al sitio</span></button>
+</div>
+
+<div class="subpage-body">
+  <div class="donate-layout">
+
+    <!-- LEFT: context -->
+    <div class="donate-left">
+      <div class="donate-eyebrow"><span data-en>Join the Movement</span><span data-es>Únete al Movimiento</span></div>
+      <h1 class="donate-h1">
+        <span data-en>Your skills.<br>Their freedom.</span>
+        <span data-es>Tus habilidades.<br>Su libertad.</span>
+      </h1>
+      <p class="donate-desc">
+        <span data-en>We need people who show up — translators, paralegals, drivers, case supporters, and community connectors. You don't need to be a lawyer to make a difference.</span>
+        <span data-es>Necesitamos personas que se presenten — traductores, paralegales, conductores, apoyadores de casos y conectores comunitarios. No necesitas ser abogado para marcar la diferencia.</span>
+      </p>
+
+      <div class="impact-list">
+        <div class="impact-item">
+          <div class="impact-amt" style="font-size:1.4rem;">🗣️</div>
+          <div class="impact-txt"><span data-en><strong>Translator</strong> — Spanish, Portuguese, Indigenous languages welcome</span><span data-es><strong>Traductor</strong> — Español, portugués, lenguas indígenas bienvenidas</span></div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-amt" style="font-size:1.4rem;">📋</div>
+          <div class="impact-txt"><span data-en><strong>Case Support</strong> — Help gather documents, contact families, track filings</span><span data-es><strong>Apoyo en Casos</strong> — Ayuda a reunir documentos, contactar familias, dar seguimiento a presentaciones</span></div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-amt" style="font-size:1.4rem;">⚖️</div>
+          <div class="impact-txt"><span data-en><strong>Legal Volunteer</strong> — Pro bono attorneys or law students welcome</span><span data-es><strong>Voluntario Legal</strong> — Abogados pro bono o estudiantes de derecho bienvenidos</span></div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-amt" style="font-size:1.4rem;">🌱</div>
+          <div class="impact-txt"><span data-en><strong>Community Guide</strong> — Help newly arrived families navigate systems and services</span><span data-es><strong>Guía Comunitario</strong> — Ayuda a las familias recién llegadas a navegar sistemas y servicios</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: volunteer form -->
+    <div class="donate-right">
+      <div class="donate-form-card" id="vol-form-card">
+
+        <div class="form-section-label"><span data-en>Tell us about yourself</span><span data-es>Cuéntanos sobre ti</span></div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label"><span data-en>First name</span><span data-es>Nombre</span></label>
+            <input type="text" class="field-input" placeholder="Alex" autocomplete="given-name"/>
+          </div>
+          <div class="field-group">
+            <label class="field-label"><span data-en>Last name</span><span data-es>Apellido</span></label>
+            <input type="text" class="field-input" placeholder="Reyes" autocomplete="family-name"/>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Email</label>
+          <input type="email" class="field-input" placeholder="alex@example.com" autocomplete="email"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label"><span data-en>Phone (optional)</span><span data-es>Teléfono (opcional)</span></label>
+          <input type="tel" class="field-input" placeholder="(206) 555-0100" autocomplete="tel"/>
+        </div>
+
+        <div class="form-divider"></div>
+        <div class="form-section-label"><span data-en>How can you help?</span><span data-es>¿Cómo puedes ayudar?</span></div>
+
+        <div class="check-group">
+          <label class="check-item"><input type="checkbox" class="check-input"/><span data-en>Translation / Interpretation</span><span data-es>Traducción / Interpretación</span></label>
+          <label class="check-item"><input type="checkbox" class="check-input"/><span data-en>Legal support (paralegal / attorney)</span><span data-es>Apoyo legal (paralegal / abogado)</span></label>
+          <label class="check-item"><input type="checkbox" class="check-input"/><span data-en>Case documentation support</span><span data-es>Apoyo en documentación de casos</span></label>
+          <label class="check-item"><input type="checkbox" class="check-input"/><span data-en>Community outreach</span><span data-es>Alcance comunitario</span></label>
+          <label class="check-item"><input type="checkbox" class="check-input"/><span data-en>Transportation / logistics</span><span data-es>Transporte / logística</span></label>
+          <label class="check-item"><input type="checkbox" class="check-input"/><span data-en>Other (describe below)</span><span data-es>Otro (describe abajo)</span></label>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label"><span data-en>Anything else you want us to know?</span><span data-es>¿Algo más que quieras que sepamos?</span></label>
+          <textarea class="field-input field-textarea" placeholder="Languages you speak, availability, skills..."></textarea>
+        </div>
+
+        <button class="donate-submit" style="background:var(--g);" onclick="submitVolunteer()">
+          <span id="vol-btn-text"><span data-en>Submit Application</span><span data-es>Enviar Solicitud</span></span>
+          <span id="vol-spinner" style="display:none;">⏳</span>
+        </button>
+
+        <div class="secure-note">
+          <span data-en>Demo only — database integration coming soon. We'll reach out within 48 hours.</span>
+          <span data-es>Solo demostración — integración de base de datos próximamente. Nos comunicaremos en 48 horas.</span>
+        </div>
+      </div>
+
+      <!-- success state -->
+      <div class="donate-success" id="vol-success" style="display:none;">
+        <div class="success-icon">🤝</div>
+        <h2 class="donate-h1" style="font-size:2rem;margin-bottom:0.75rem;"><span data-en>You're in.</span><span data-es>Estás dentro.</span></h2>
+        <p style="color:var(--gray);font-size:15px;line-height:1.7;max-width:360px;margin:0 auto 1.5rem;">
+          <span data-en>We'll reach out within 48 hours to match you with the right role. Thank you for standing with us.</span>
+          <span data-es>Nos comunicaremos en 48 horas para conectarte con el rol adecuado. Gracias por estar con nosotros.</span>
+        </p>
+        <button class="donate-submit" style="max-width:260px;margin:0 auto;background:var(--g);" onclick="showPage('main-page')">
+          <span data-en>Back to site</span><span data-es>Volver al sitio</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="subpage-footer">
+  <span>© 2025 Paz y Dignidad Human Rights International Foundation</span>
+  <span><span data-en>All Rights Reserved</span><span data-es>Todos los Derechos Reservados</span></span>
+</footer>
+
+</div><!-- /#volunteer-page -->
+
+
+<style>
+/* ════ SUBPAGE SHARED ════ */
+#main-page { display:block; }
+
+.subpage {
+  min-height:100vh;
+  background:var(--surface);
+  animation:spIn 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes spIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+
+.subpage-nav {
+  position:sticky; top:0; z-index:400; height:var(--nav-h);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 2rem;
+  background:rgba(255,255,255,0.82);
+  backdrop-filter:blur(28px) saturate(200%);
+  -webkit-backdrop-filter:blur(28px) saturate(200%);
+  border-bottom:1px solid rgba(0,0,0,0.055);
+}
+.subpage-back {
+  font-size:12px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
+  color:var(--gray); background:transparent; border:1.5px solid var(--border);
+  padding:0.45rem 1rem; border-radius:9px; cursor:pointer;
+  transition:all 0.18s;
+}
+.subpage-back:hover { color:var(--ink); border-color:#aaa; background:var(--surface); }
+
+.subpage-body {
+  max-width:1100px; margin:0 auto;
+  padding:4rem 2rem 5rem;
+}
+
+/* ── DONATE / VOL LAYOUT ── */
+.donate-layout {
+  display:grid; grid-template-columns:1fr 480px; gap:4rem; align-items:start;
+}
+
+.donate-eyebrow {
+  display:inline-flex; align-items:center; gap:7px;
+  background:var(--g-dim); border:1px solid rgba(157,199,20,0.28);
+  border-radius:100px; padding:5px 13px;
+  font-size:10.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--g); margin-bottom:1.25rem;
+}
+.donate-h1 {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2rem,3.5vw,3rem);
+  font-weight:800; line-height:1.05; letter-spacing:-0.035em; color:var(--ink);
+  margin-bottom:1.1rem;
+}
+.donate-desc { font-size:15.5px; color:var(--gray); line-height:1.8; margin-bottom:2.25rem; }
+
+/* impact list */
+.impact-list { display:flex; flex-direction:column; gap:0.75rem; margin-bottom:2rem; }
+.impact-item {
+  display:flex; align-items:center; gap:1rem;
+  background:var(--white); border:1px solid var(--border); border-radius:13px;
+  padding:1rem 1.25rem;
+  transition:transform 0.2s cubic-bezier(0.22,1,0.36,1), box-shadow 0.2s;
+}
+.impact-item:hover { transform:translateX(4px); box-shadow:0 6px 20px rgba(0,0,0,0.06); }
+.impact-amt { font-family:'Syne',sans-serif; font-size:1.6rem; font-weight:800; color:var(--g); min-width:52px; }
+.impact-txt { font-size:13.5px; color:var(--gray); line-height:1.55; }
+
+/* donate note */
+.donate-note {
+  background:var(--ink2); color:rgba(255,255,255,0.52);
+  border-radius:14px; padding:1.25rem 1.4rem;
+  font-size:13px; line-height:1.7;
+}
+.donate-note strong { color:var(--y); }
+
+/* ── FORM CARD ── */
+.donate-form-card {
+  background:var(--white); border-radius:22px; border:1px solid var(--border);
+  padding:2.25rem 2rem;
+  box-shadow:0 12px 48px rgba(0,0,0,0.08);
+}
+.form-section-label {
+  font-size:10.5px; font-weight:800; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--gray2); margin-bottom:0.85rem;
+}
+.form-divider { height:1px; background:var(--border); margin:1.5rem 0; }
+
+/* amount grid */
+.amount-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.5rem; margin-bottom:0.75rem; }
+.amt-btn {
+  padding:0.7rem 0.5rem; border-radius:11px; border:1.5px solid var(--border);
+  font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--gray);
+  background:var(--white); cursor:pointer; transition:all 0.18s;
+}
+.amt-btn:hover { border-color:var(--g); color:var(--ink); }
+.amt-btn.active { background:var(--g); border-color:var(--g); color:var(--white); }
+
+.custom-amt-wrap {
+  position:relative; display:flex; align-items:center; margin-bottom:1rem;
+}
+.currency-sym {
+  position:absolute; left:12px; font-size:15px; font-weight:600; color:var(--gray);
+  pointer-events:none;
+}
+.custom-amt-input {
+  width:100%; padding:0.7rem 0.85rem 0.7rem 1.75rem;
+  border:1.5px solid var(--border); border-radius:11px;
+  font-size:14px; font-weight:600; color:var(--ink); background:var(--surface);
+  outline:none; transition:border-color 0.18s;
+}
+.custom-amt-input:focus { border-color:var(--g); background:var(--white); }
+.custom-amt-input::placeholder { color:var(--gray2); font-weight:400; }
+
+/* frequency toggle */
+.freq-toggle {
+  display:flex; background:var(--surface2); border-radius:11px; padding:3px; gap:3px; margin-bottom:0.25rem;
+}
+.freq-btn {
+  flex:1; padding:0.5rem; border:none; border-radius:9px; cursor:pointer;
+  font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+  background:transparent; color:var(--gray); transition:all 0.18s;
+}
+.freq-btn.active { background:var(--white); color:var(--ink); box-shadow:0 1px 6px rgba(0,0,0,0.1); }
+
+/* field */
+.field-row { display:grid; grid-template-columns:1fr 1fr; gap:0.65rem; }
+.field-group { display:flex; flex-direction:column; gap:0.4rem; margin-bottom:0.75rem; }
+.field-label { font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--gray2); }
+.field-input {
+  padding:0.72rem 0.9rem; border:1.5px solid var(--border); border-radius:11px;
+  font-size:14px; color:var(--ink); background:var(--white); outline:none;
+  transition:border-color 0.18s, box-shadow 0.18s; font-family:inherit;
+}
+.field-input:focus { border-color:var(--g); box-shadow:0 0 0 3px rgba(157,199,20,0.12); }
+.field-input::placeholder { color:var(--gray2); }
+.field-textarea { min-height:90px; resize:vertical; }
+
+/* card input with icons */
+.card-input-wrap { position:relative; }
+.card-input-wrap .field-input { width:100%; padding-right:5.5rem; }
+.card-icons { position:absolute; right:10px; top:50%; transform:translateY(-50%); display:flex; gap:4px; }
+.card-icon {
+  font-size:8.5px; font-weight:800; letter-spacing:0.04em;
+  padding:2px 5px; border-radius:4px; border:1px solid var(--border);
+  color:var(--gray2); transition:all 0.2s;
+}
+.card-icon.lit { border-color:var(--g); color:var(--g); background:var(--g-dim); }
+
+/* checkbox group */
+.check-group { display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem; }
+.check-item {
+  display:flex; align-items:center; gap:0.65rem;
+  font-size:13.5px; color:var(--ink); cursor:pointer;
+  padding:0.6rem 0.85rem; border-radius:10px; border:1.5px solid var(--border);
+  transition:border-color 0.18s, background 0.18s;
+}
+.check-item:hover { border-color:var(--g); background:var(--g-dim); }
+.check-input { width:16px; height:16px; accent-color:var(--g); cursor:pointer; }
+
+/* submit */
+.donate-submit {
+  width:100%; padding:0.95rem; border-radius:13px;
+  background:var(--g); color:var(--white);
+  font-family:'Syne',sans-serif; font-size:15px; font-weight:800; letter-spacing:0.02em;
+  border:none; cursor:pointer; margin-top:1.25rem;
+  transition:background 0.18s, transform 0.15s, box-shadow 0.18s;
+  box-shadow:0 4px 18px rgba(157,199,20,0.35);
+}
+.donate-submit:hover { background:var(--g2,#7a9e0f); transform:scale(0.98); }
+
+.secure-note {
+  text-align:center; font-size:11.5px; color:var(--gray2); margin-top:0.85rem; line-height:1.55;
+}
+
+/* success */
+.donate-success { text-align:center; padding:3rem 1rem; }
+.success-icon { font-size:3.5rem; margin-bottom:1rem; }
+
+/* subpage footer */
+.subpage-footer {
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;
+  padding:1.5rem 2rem; border-top:1px solid var(--border);
+  font-size:11px; color:var(--gray2); text-transform:uppercase; letter-spacing:0.07em;
+}
+
+/* ── responsive ── */
+@media (max-width:900px) {
+  .donate-layout { grid-template-columns:1fr; gap:2.5rem; }
+}
+@media (max-width:520px) {
+  .subpage-body { padding:2.5rem 1.25rem 4rem; }
+  .donate-form-card { padding:1.6rem 1.25rem; }
+  .amount-grid { grid-template-columns:repeat(2,1fr); }
+  .field-row { grid-template-columns:1fr; }
+  .donate-h1 { font-size:1.9rem; }
+}
+</style>
+
 <script>
+/* ── PAGE ROUTER ── */
+let currentLang = 'en';
+
+function showPage(pageId) {
+  document.getElementById('main-page').style.display    = pageId === 'main-page'      ? 'block' : 'none';
+  document.getElementById('donate-page').style.display  = pageId === 'donate-page'    ? 'block' : 'none';
+  document.getElementById('volunteer-page').style.display = pageId === 'volunteer-page' ? 'block' : 'none';
+  window.scrollTo({top:0, behavior:'smooth'});
+  // reset success states when leaving
+  if (pageId !== 'donate-page') {
+    document.getElementById('donate-form-card').style.display = 'block';
+    document.getElementById('donate-success').style.display   = 'none';
+  }
+  if (pageId !== 'volunteer-page') {
+    document.getElementById('vol-form-card').style.display = 'block';
+    document.getElementById('vol-success').style.display   = 'none';
+  }
+}
+
 /* ── LANG ── */
 function setLang(lang) {
+  currentLang = lang;
   document.body.className = lang;
-  document.getElementById('btnEn').classList.toggle('active', lang==='en');
-  document.getElementById('btnEs').classList.toggle('active', lang==='es');
-  document.getElementById('mBtnEn').classList.toggle('active', lang==='en');
-  document.getElementById('mBtnEs').classList.toggle('active', lang==='es');
+  ['btnEn','btnEs','mBtnEn','mBtnEs'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('active', id.toLowerCase().includes(lang));
+  });
 }
 
 /* ── TABS ── */
@@ -1049,21 +1579,75 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.07, rootMargin: '0px 0px -24px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* ── HERO CARD 3D TILT (desktop only) ── */
-const card = document.getElementById('heroCard');
-if (card && window.innerWidth > 1040) {
-  const section = document.querySelector('.hero-section');
-  section.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const cx = r.left + r.width / 2;
-    const cy = r.top  + r.height / 2;
-    const dx = (e.clientX - cx) / r.width;
-    const dy = (e.clientY - cy) / r.height;
-    card.style.transform = `perspective(800px) rotateY(${dx*7}deg) rotateX(${-dy*5}deg) scale(1.01)`;
+/* ── HERO TILT ── */
+const heroCard = document.getElementById('heroCard');
+if (heroCard && window.innerWidth > 1040) {
+  const heroSection = document.querySelector('.hero-section');
+  heroSection.addEventListener('mousemove', e => {
+    const r  = heroCard.getBoundingClientRect();
+    const dx = (e.clientX - (r.left + r.width/2))  / r.width;
+    const dy = (e.clientY - (r.top  + r.height/2)) / r.height;
+    heroCard.style.transform = `perspective(800px) rotateY(${dx*7}deg) rotateX(${-dy*5}deg) scale(1.01)`;
   });
-  section.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
+  heroSection.addEventListener('mouseleave', () => { heroCard.style.transform = ''; });
+}
+
+/* ── DONATE: amount selection ── */
+let selectedAmt = '150';
+function selectAmt(btn, val) {
+  document.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedAmt = val;
+  document.getElementById('customAmt').value = '';
+  document.getElementById('donate-amt-label').textContent = '$' + val;
+}
+function clearAmtBtns() {
+  document.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('active'));
+  const v = document.getElementById('customAmt').value;
+  document.getElementById('donate-amt-label').textContent = v ? '$' + v : '';
+}
+
+/* ── DONATE: frequency ── */
+function setFreq(f, btn) {
+  document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+/* ── CARD FORMATTING ── */
+function fmtCard(el) {
+  let v = el.value.replace(/\D/g,'').substring(0,16);
+  el.value = v.replace(/(.{4})/g,'$1 ').trim();
+  const first = v[0];
+  document.getElementById('ci-visa').classList.toggle('lit', first==='4');
+  document.getElementById('ci-mc').classList.toggle('lit', first==='5');
+  document.getElementById('ci-amex').classList.toggle('lit', first==='3');
+}
+function fmtExpiry(el) {
+  let v = el.value.replace(/\D/g,'').substring(0,4);
+  if (v.length >= 2) v = v.substring(0,2) + ' / ' + v.substring(2);
+  el.value = v;
+}
+
+/* ── SUBMIT HANDLERS (demo) ── */
+function submitDonate() {
+  const btn = document.querySelector('#donate-form-card .donate-submit');
+  document.getElementById('donate-btn-text').style.display = 'none';
+  document.getElementById('donate-spinner').style.display  = 'inline';
+  btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('donate-form-card').style.display = 'none';
+    document.getElementById('donate-success').style.display   = 'block';
+  }, 1400);
+}
+function submitVolunteer() {
+  const btn = document.querySelector('#vol-form-card .donate-submit');
+  document.getElementById('vol-btn-text').style.display  = 'none';
+  document.getElementById('vol-spinner').style.display   = 'inline';
+  btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('vol-form-card').style.display = 'none';
+    document.getElementById('vol-success').style.display   = 'block';
+  }, 1200);
 }
 </script>
 </body>
