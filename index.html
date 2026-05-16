@@ -431,6 +431,42 @@ footer {
 .footer-sub  { font-size:12px; color:var(--gray); margin-top:2px; }
 .footer-right{ font-size:10.5px; color:var(--gray2); letter-spacing:0.08em; text-transform:uppercase; }
 
+/* ── WHO WE ARE GRID ── */
+.who-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.85rem; margin-top:1.75rem; }
+.who-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+  padding:1.5rem 1.4rem;
+  transition:transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s, border-color 0.22s;
+}
+.who-card:hover { transform:translateY(-4px); box-shadow:0 10px 32px rgba(0,0,0,0.07); border-color:rgba(157,199,20,0.3); }
+.who-icon  { font-size:22px; margin-bottom:0.75rem; }
+.who-label { font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--ink); margin-bottom:0.4rem; }
+.who-desc  { font-size:12.5px; color:var(--gray); line-height:1.65; }
+
+/* ── TEAM GRID ── */
+.team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.85rem; margin-top:1.75rem; }
+.team-card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r);
+  padding:1.65rem 1.5rem;
+  transition:transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s;
+}
+.team-card:hover { transform:translateY(-4px); box-shadow:0 10px 32px rgba(0,0,0,0.07); }
+.team-card-cta { background:var(--ink2); border-color:transparent; }
+.team-card-cta .team-role { color:var(--y); }
+.team-card-cta .team-desc { color:rgba(255,255,255,0.5); }
+.team-role { font-family:'Syne',sans-serif; font-size:13.5px; font-weight:700; color:var(--ink); margin-bottom:0.5rem; }
+.team-desc { font-size:13px; color:var(--gray); line-height:1.65; }
+
+/* ── CASE PLACEHOLDER ── */
+.case-placeholder {
+  background:var(--white); border:1.5px dashed rgba(157,199,20,0.35); border-radius:var(--r);
+  padding:2rem 1.75rem; margin-top:0.85rem;
+  display:flex; align-items:flex-start; gap:1.1rem;
+}
+.placeholder-icon { font-size:28px; flex-shrink:0; opacity:0.5; }
+.placeholder-label { font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--gray); margin-bottom:0.4rem; }
+.placeholder-text p { font-size:13px; color:var(--gray2); line-height:1.7; }
+
 /* ════════════ LANGUAGE ════════════ */
 body.es [data-en] { display:none; }
 body.en [data-es] { display:none; }
@@ -442,6 +478,8 @@ body.en [data-es] { display:none; }
   .hero-card-row { flex:1; padding:1.3rem; border-bottom:none!important; border-right:1px solid rgba(255,255,255,0.05); }
   .hero-card-row:last-child { border-right:none; }
   .h-num { font-size:2.5rem; }
+  .who-grid { grid-template-columns:1fr 1fr; }
+  .team-grid { grid-template-columns:1fr 1fr; }
   .two-col { grid-template-columns:1fr; gap:2.5rem; }
   .steps-grid { grid-template-columns:1fr; }
   .programs-grid { grid-template-columns:1fr; }
@@ -478,7 +516,7 @@ body.en [data-es] { display:none; }
   .vol-bg { padding:4rem 1.25rem; }
 
   .sec-h2 { font-size:clamp(1.65rem,7vw,2.1rem); }
-  .steps-grid,.programs-grid,.support-row { grid-template-columns:1fr; gap:0.75rem; }
+  .steps-grid,.programs-grid,.support-row,.who-grid,.team-grid { grid-template-columns:1fr; gap:0.75rem; }
 
   .cases-tabs { width:100%; }
   .tab-btn { flex:1; text-align:center; font-size:10.5px; padding:0.45rem 0.5rem; }
@@ -524,7 +562,7 @@ body.en [data-es] { display:none; }
     <li><a href="#habeas">Habeas Corpus</a></li>
     <li><a href="#programs"><span data-en>Programs</span><span data-es>Programas</span></a></li>
     <li><a href="#cases"><span data-en>Successful Cases</span><span data-es>Casos Exitosos</span></a></li>
-    <li><a href="#volunteer"><span data-en>Volunteer</span><span data-es>Voluntario</span></a></li>
+    <li><a href="#donate"><span data-en>Donate</span><span data-es>Donar</span></a></li>
   </ul>
 
   <div class="nav-right">
@@ -545,7 +583,7 @@ body.en [data-es] { display:none; }
   <a href="#habeas"    onclick="closeMenu()">Habeas Corpus</a>
   <a href="#programs"  onclick="closeMenu()"><span data-en>Programs</span><span data-es>Programas</span></a>
   <a href="#cases"     onclick="closeMenu()"><span data-en>Successful Cases</span><span data-es>Casos Exitosos</span></a>
-  <a href="#volunteer" onclick="closeMenu()"><span data-en>Volunteer</span><span data-es>Voluntario</span></a>
+  <a href="#donate"     onclick="closeMenu()"><span data-en>Donate</span><span data-es>Donar</span></a>
   <div class="mobile-lang">
     <button id="mBtnEn" class="active" onclick="setLang('en')">English</button>
     <button id="mBtnEs"               onclick="setLang('es')">Español</button>
@@ -607,8 +645,8 @@ body.en [data-es] { display:none; }
           <span data-es>Nacidos de la comunidad.<br>Construidos sobre la dignidad.</span>
         </h2>
         <p class="body-p reveal d2">
-          <span data-en>Paz y Dignidad Human Rights International Foundation was created to defend the human rights of migrant families from Central America, Mexico, and Latin America — and to protect human rights defenders throughout the Americas.</span>
-          <span data-es>La Fundación Paz y Dignidad fue creada para defender los derechos humanos de las familias migrantes de Centroamérica, México y América Latina — y proteger a los defensores de derechos humanos en toda América.</span>
+          <span data-en>We are a group of immigrants, community leaders, allies, faith leaders, and advocates who came together because we lived this reality firsthand. Paz y Dignidad Human Rights International Foundation was created to defend the human rights of migrant families from Central America, Mexico, and Latin America — and to protect human rights defenders throughout the Americas.</span>
+          <span data-es>Somos un grupo de inmigrantes, líderes comunitarios, aliados, líderes de fe y defensores que nos unimos porque vivimos esta realidad de primera mano. La Fundación Paz y Dignidad fue creada para defender los derechos humanos de las familias migrantes de Centroamérica, México y América Latina — y para proteger a los defensores de derechos humanos en toda América.</span>
         </p>
         <p class="body-p reveal d3">
           <span data-en>We accompany migrants with empathy and commitment, offering integral support without discrimination. Through our network, we promote human rights, emotional well-being, and access to essential resources so every person can rebuild their life with dignity.</span>
@@ -635,6 +673,79 @@ body.en [data-es] { display:none; }
             <span data-en>Founded by immigrants and allies who lived the system firsthand. Our leadership brings together human rights activists, immigration attorneys, and community organizers united by one mission: dignity for every migrant.</span>
             <span data-es>Fundada por inmigrantes y aliados que vivieron el sistema de primera mano. Nuestro liderazgo reúne a activistas de derechos humanos, abogados de inmigración y organizadores comunitarios unidos por una misión: dignidad para cada migrante.</span>
           </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHO WE ARE: role chips -->
+    <div style="margin-top:4rem;">
+      <span class="eyebrow reveal"><span data-en>Who We Are</span><span data-es>Quiénes Somos</span></span>
+      <h2 class="sec-h2 reveal d1" style="max-width:500px;">
+        <span data-en>A coalition united by lived experience.</span>
+        <span data-es>Una coalición unida por la experiencia vivida.</span>
+      </h2>
+      <div class="who-grid reveal d2">
+        <div class="who-card">
+          <div class="who-icon">🌎</div>
+          <div class="who-label"><span data-en>Immigrants</span><span data-es>Inmigrantes</span></div>
+          <p class="who-desc"><span data-en>People who crossed borders, navigated the system, and now fight so others don't face it alone.</span><span data-es>Personas que cruzaron fronteras, navegaron el sistema y ahora luchan para que otros no lo enfrenten solos.</span></p>
+        </div>
+        <div class="who-card">
+          <div class="who-icon">🤝</div>
+          <div class="who-label"><span data-en>Community Leaders</span><span data-es>Líderes Comunitarios</span></div>
+          <p class="who-desc"><span data-en>Organizers embedded in our neighborhoods, building power from the ground up.</span><span data-es>Organizadores arraigados en nuestras comunidades, construyendo poder desde las bases.</span></p>
+        </div>
+        <div class="who-card">
+          <div class="who-icon">⚖️</div>
+          <div class="who-label"><span data-en>Allies &amp; Advocates</span><span data-es>Aliados y Defensores</span></div>
+          <p class="who-desc"><span data-en>Legal professionals, volunteers, and allies who show up because justice requires everyone.</span><span data-es>Profesionales legales, voluntarios y aliados que se presentan porque la justicia requiere a todos.</span></p>
+        </div>
+        <div class="who-card">
+          <div class="who-icon">✝️</div>
+          <div class="who-label"><span data-en>Faith Leaders</span><span data-es>Líderes de Fe</span></div>
+          <p class="who-desc"><span data-en>Pastors, deacons, and faith communities who open their doors and stand with migrant families.</span><span data-es>Pastores, diáconos y comunidades de fe que abren sus puertas y acompañan a las familias migrantes.</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEAM (no names) -->
+    <div style="margin-top:4rem;">
+      <span class="eyebrow reveal"><span data-en>Our Team</span><span data-es>Nuestro Equipo</span></span>
+      <h2 class="sec-h2 reveal d1" style="max-width:480px;">
+        <span data-en>People before titles.</span>
+        <span data-es>Personas antes que títulos.</span>
+      </h2>
+      <p class="body-p reveal d2" style="max-width:560px;">
+        <span data-en>Our team works behind the scenes by choice — protecting privacy is something we practice, not just preach. What matters is the work, not the names.</span>
+        <span data-es>Nuestro equipo trabaja entre bastidores por elección — proteger la privacidad es algo que practicamos, no solo predicamos. Lo que importa es el trabajo, no los nombres.</span>
+      </p>
+      <div class="team-grid reveal d3">
+        <div class="team-card">
+          <div class="team-role"><span data-en>Executive Director</span><span data-es>Directora Ejecutiva</span></div>
+          <p class="team-desc"><span data-en>An immigrant leader with over a decade of human rights advocacy across Latin America and the United States.</span><span data-es>Una líder inmigrante con más de una década de defensa de los derechos humanos en América Latina y los Estados Unidos.</span></p>
+        </div>
+        <div class="team-card">
+          <div class="team-role"><span data-en>Legal Coordinator</span><span data-es>Coordinador Legal</span></div>
+          <p class="team-desc"><span data-en>Connects detained individuals with pro-bono attorneys and manages our federal habeas corpus case pipeline.</span><span data-es>Conecta a las personas detenidas con abogados pro bono y gestiona nuestra cartera de casos federales de habeas corpus.</span></p>
+        </div>
+        <div class="team-card">
+          <div class="team-role"><span data-en>Community Outreach Lead</span><span data-es>Coordinadora de Alcance Comunitario</span></div>
+          <p class="team-desc"><span data-en>Builds partnerships with faith communities and local organizations to expand our network of support across Washington State.</span><span data-es>Construye alianzas con comunidades de fe y organizaciones locales para expandir nuestra red de apoyo en todo el estado de Washington.</span></p>
+        </div>
+        <div class="team-card">
+          <div class="team-role"><span data-en>Case Manager</span><span data-es>Gestora de Casos</span></div>
+          <p class="team-desc"><span data-en>Works directly with detained individuals and their families — coordinating documentation, translation, and court preparation.</span><span data-es>Trabaja directamente con las personas detenidas y sus familias — coordinando documentación, traducción y preparación para los tribunales.</span></p>
+        </div>
+        <div class="team-card">
+          <div class="team-role"><span data-en>Volunteer Coordinator</span><span data-es>Coordinador de Voluntarios</span></div>
+          <p class="team-desc"><span data-en>Manages our network of 10+ volunteers including translators, paralegals, and community guides who support every case.</span><span data-es>Gestiona nuestra red de más de 10 voluntarios incluyendo traductores, paralegal y guías comunitarios que apoyan cada caso.</span></p>
+        </div>
+        <div class="team-card team-card-cta">
+          <div class="team-role"><span data-en>Join the Team</span><span data-es>Únete al Equipo</span></div>
+          <p class="team-desc"><span data-en>We're always looking for translators, legal volunteers, case managers, and community allies. Your skills matter here.</span><span data-es>Siempre buscamos traductores, voluntarios legales, gestores de casos y aliados comunitarios. Tus habilidades importan aquí.</span></p>
+          <a class="btn-y" href="#donate" style="margin-top:1rem;font-size:11.5px;padding:0.6rem 1.1rem;display:inline-block;">
+            <span data-en>Get Involved →</span><span data-es>Involúcrate →</span>
+          </a>
         </div>
       </div>
     </div>
@@ -770,47 +881,21 @@ body.en [data-es] { display:none; }
     </div>
 
     <div id="tab-released" class="cases-panel active">
-      <div class="case-card">
-        <div class="case-badge win">✊</div>
-        <div class="case-info">
-          <div class="case-outcome"><span data-en>✦ Released from detention</span><span data-es>✦ Liberado de la detención</span></div>
-          <div class="case-title"><span data-en>Case #001 — Guatemalan Father of Three</span><span data-es>Caso #001 — Padre guatemalteco de tres hijos</span></div>
-          <p class="case-body"><span data-en>After 6 months in ICE detention in Tacoma, our legal team filed a federal habeas corpus petition. The judge ordered his release within 72 hours. He is now home with his family in Seattle.</span><span data-es>Tras 6 meses de detención del ICE en Tacoma, nuestro equipo legal presentó una petición federal de habeas corpus. El juez ordenó su liberación en 72 horas. Ahora está en casa con su familia en Seattle.</span></p>
-        </div>
-      </div>
-      <div class="case-card">
-        <div class="case-badge win">🕊️</div>
-        <div class="case-info">
-          <div class="case-outcome"><span data-en>✦ Bond hearing won</span><span data-es>✦ Audiencia de fianza ganada</span></div>
-          <div class="case-title"><span data-en>Case #002 — Salvadoran Mother</span><span data-es>Caso #002 — Madre salvadoreña</span></div>
-          <p class="case-body"><span data-en>Detained at the border with her two children after fleeing gang violence, we secured a bond hearing and helped her family raise the bond. She was reunited with her children within weeks.</span><span data-es>Detenida en la frontera con sus dos hijos tras huir de la violencia de pandillas, aseguramos una audiencia de fianza y ayudamos a su familia a reunir el monto. Se reunió con sus hijos en pocas semanas.</span></p>
-        </div>
-      </div>
-      <div class="case-card">
-        <div class="case-badge win">⚖️</div>
-        <div class="case-info">
-          <div class="case-outcome"><span data-en>✦ Wrongful detention overturned</span><span data-es>✦ Detención ilegal revertida</span></div>
-          <div class="case-title"><span data-en>Case #003 — Honduran Teenager</span><span data-es>Caso #003 — Adolescente hondureño</span></div>
-          <p class="case-body"><span data-en>A 17-year-old unaccompanied minor was improperly transferred to adult detention. We documented the violation and connected the family with legal counsel. He was transferred to appropriate facilities within days.</span><span data-es>Un menor no acompañado de 17 años fue trasladado incorrectamente a una instalación para adultos. Documentamos la violación y conectamos a la familia con asesoría legal. Fue trasladado a instalaciones adecuadas en días.</span></p>
+      <div class="case-placeholder">
+        <div class="placeholder-icon">✊</div>
+        <div class="placeholder-text">
+          <div class="placeholder-label"><span data-en>Add your real cases here</span><span data-es>Agrega tus casos reales aquí</span></div>
+          <p><span data-en>This section is ready for Paz y Dignidad's actual successful releases. Share the real outcomes — anonymized if needed — and we'll add them here with the same format.</span><span data-es>Esta sección está lista para los casos reales de liberaciones exitosas de Paz y Dignidad. Comparte los resultados reales — anonimizados si es necesario — y los agregaremos aquí con el mismo formato.</span></p>
         </div>
       </div>
     </div>
 
     <div id="tab-asylum" class="cases-panel">
-      <div class="case-card">
-        <div class="case-badge win">🏡</div>
-        <div class="case-info">
-          <div class="case-outcome"><span data-en>✦ Asylum approved</span><span data-es>✦ Asilo aprobado</span></div>
-          <div class="case-title"><span data-en>Case #004 — Nicaraguan Family</span><span data-es>Caso #004 — Familia nicaragüense</span></div>
-          <p class="case-body"><span data-en>A family of four fleeing political persecution received comprehensive case support from our volunteers — documentation, legal prep, and emotional support throughout the asylum process. Approved after 14 months.</span><span data-es>Una familia de cuatro personas que huía de la persecución política recibió apoyo integral de nuestros voluntarios — documentación, preparación legal y apoyo emocional. Aprobado tras 14 meses.</span></p>
-        </div>
-      </div>
-      <div class="case-card">
-        <div class="case-badge win">🌟</div>
-        <div class="case-info">
-          <div class="case-outcome"><span data-en>✦ Withholding of removal granted</span><span data-es>✦ Suspensión de deportación concedida</span></div>
-          <div class="case-title"><span data-en>Case #005 — Mexican Human Rights Defender</span><span data-es>Caso #005 — Defensor de derechos humanos mexicano</span></div>
-          <p class="case-body"><span data-en>A community organizer who faced death threats from a cartel in Michoacán was granted withholding of removal after our team helped document threats and connect him with specialized legal representation.</span><span data-es>Un organizador comunitario que enfrentó amenazas de muerte de un cartel en Michoacán recibió la suspensión de deportación después de que nuestro equipo ayudó a documentar las amenazas y conectarlo con representación legal especializada.</span></p>
+      <div class="case-placeholder">
+        <div class="placeholder-icon">🏡</div>
+        <div class="placeholder-text">
+          <div class="placeholder-label"><span data-en>Add your real asylum cases here</span><span data-es>Agrega tus casos reales de asilo aquí</span></div>
+          <p><span data-en>Any asylum grants, withholding of removal decisions, or other immigration court wins go here. No names required — just the outcome and a brief description of the journey.</span><span data-es>Cualquier otorgamiento de asilo, decisiones de suspensión de deportación u otras victorias en el tribunal de inmigración van aquí. No se requieren nombres — solo el resultado y una breve descripción del proceso.</span></p>
         </div>
       </div>
     </div>
@@ -820,7 +905,7 @@ body.en [data-es] { display:none; }
         <div class="case-badge">⏳</div>
         <div class="case-info">
           <div class="case-outcome" style="background:rgba(107,107,114,0.1);border-color:rgba(107,107,114,0.2);color:var(--gray);">
-            <span data-en>● Active · Federal Court</span><span data-es>● Activo · Tribunal Federal</span>
+            <span data-en>● Active right now</span><span data-es>● Activo ahora mismo</span>
           </div>
           <div class="case-title"><span data-en>50+ Individuals Currently in Custody</span><span data-es>Más de 50 personas actualmente detenidas</span></div>
           <p class="case-body"><span data-en>We are actively supporting over 50 individuals in ICE detention across Washington State. Each case receives assessment, family contact support, and legal referrals. No case is too complex — we fight for everyone.</span><span data-es>Estamos apoyando activamente a más de 50 personas bajo detención del ICE en todo el estado de Washington. Cada caso recibe evaluación, apoyo de contacto familiar y referencias legales. Ningún caso es demasiado complejo — luchamos por todos.</span></p>
@@ -830,10 +915,10 @@ body.en [data-es] { display:none; }
         <div class="case-badge">📋</div>
         <div class="case-info">
           <div class="case-outcome" style="background:rgba(107,107,114,0.1);border-color:rgba(107,107,114,0.2);color:var(--gray);">
-            <span data-en>● Your case could be next</span><span data-es>● Tu caso podría ser el siguiente</span>
+            <span data-en>● Is someone you know detained?</span><span data-es>● ¿Alguien que conoces está detenido?</span>
           </div>
-          <div class="case-title"><span data-en>Is a Loved One in Detention?</span><span data-es>¿Tienes un ser querido detenido?</span></div>
-          <p class="case-body"><span data-en>Contact us within 24 hours of detention. The sooner we assess the case, the stronger our legal options. Reach out at info@pazydignidad.org or through our volunteer network.</span><span data-es>Contáctenos dentro de las 24 horas de la detención. Cuanto antes evaluemos el caso, más sólidas serán nuestras opciones legales. Escríbenos a info@pazydignidad.org o a través de nuestra red de voluntarios.</span></p>
+          <div class="case-title"><span data-en>Reach Out Within 24 Hours</span><span data-es>Comunícate en las Primeras 24 Horas</span></div>
+          <p class="case-body"><span data-en>The sooner we assess the case, the stronger our legal options. Contact us at info@pazydignidad.org or through our volunteer network — we respond fast.</span><span data-es>Cuanto antes evaluemos el caso, más sólidas serán nuestras opciones legales. Contáctanos en info@pazydignidad.org o a través de nuestra red de voluntarios — respondemos rápido.</span></p>
         </div>
       </div>
     </div>
@@ -873,16 +958,16 @@ body.en [data-es] { display:none; }
   </div>
 </section>
 
-<!-- ══ VOLUNTEER ══ -->
-<section id="volunteer" class="vol-bg">
+<!-- ══ DONATE ══ -->
+<section id="donate" class="vol-bg">
   <div class="vol-inner">
     <h2 class="reveal">
-      <span data-en>Every voice, every hour, every skill matters.</span>
-      <span data-es>Cada voz, cada hora, cada habilidad importa.</span>
+      <span data-en>Every dollar, every hour, every skill matters.</span>
+      <span data-es>Cada dólar, cada hora, cada habilidad importa.</span>
     </h2>
     <div class="vol-btns reveal d1">
-      <a class="btn-dark" href="#"><span data-en>Become a Volunteer</span><span data-es>Ser Voluntario</span></a>
-      <a class="btn-od"   href="#"><span data-en>Make a Donation</span><span data-es>Hacer una Donación</span></a>
+      <a class="btn-dark" href="#"><span data-en>Make a Donation</span><span data-es>Hacer una Donación</span></a>
+      <a class="btn-od"   href="#"><span data-en>Volunteer With Us</span><span data-es>Voluntariado</span></a>
     </div>
   </div>
 </section>
