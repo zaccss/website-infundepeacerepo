@@ -14,602 +14,489 @@
 :root {
   --y:       #E8F000;
   --y2:      #cdd600;
-  --y-glow:  rgba(232,240,0,0.22);
+  --y-glow:  rgba(232,240,0,0.25);
   --g:       #9DC714;
-  --g-dim:   rgba(157,199,20,0.15);
+  --g-dim:   rgba(157,199,20,0.13);
   --ink:     #0a0a0b;
   --ink2:    #141416;
-  --ink3:    #1e1e22;
   --gray:    #6b6b72;
   --gray2:   #9a9aa4;
   --border:  rgba(0,0,0,0.07);
-  --border2: rgba(255,255,255,0.06);
   --surface: #f4f4f6;
-  --surface2:#eeeef2;
+  --surface2:#eaeaed;
   --white:   #ffffff;
-  --r:       20px;
-  --r-sm:    14px;
+  --r:       18px;
   --nav-h:   64px;
-  --fs-display: clamp(3rem,6.5vw,5.75rem);
+  --fs-disp: clamp(2.8rem,5.8vw,5.25rem);
 }
 
 html { scroll-behavior: smooth; }
-section[id], .habeas-bg { scroll-margin-top: var(--nav-h); }
+section[id] { scroll-margin-top: var(--nav-h); }
 
 body {
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'DM Sans', -apple-system, sans-serif;
   background: var(--white);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+h1,h2,.h-num,.logo-name,.step-title,.prog-title,.story-name,.fsupp h3,.vol-inner h2,.footer-org,.case-title { font-family: 'Syne', sans-serif; }
 
-/* ── SYNE for headings ── */
-h1,h2,.h-num,.logo-name { font-family: 'Syne', sans-serif; }
-
-/* ════ GRAIN OVERLAY ════ */
 body::after {
-  content: '';
-  position: fixed; inset: 0; z-index: 9999;
-  pointer-events: none;
-  opacity: 0.018;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
+  content:''; position:fixed; inset:0; z-index:9999; pointer-events:none;
+  opacity:0.016;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
 }
 
-/* ════ REVEAL ════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
-              transform 0.7s cubic-bezier(0.22,1,0.36,1);
-}
-.reveal.visible { opacity: 1; transform: none; }
-.d1{transition-delay:0.08s} .d2{transition-delay:0.16s}
-.d3{transition-delay:0.24s} .d4{transition-delay:0.32s}
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(18px); transition:opacity 0.65s cubic-bezier(0.22,1,0.36,1),transform 0.65s cubic-bezier(0.22,1,0.36,1); }
+.reveal.visible { opacity:1; transform:none; }
+.d1{transition-delay:.07s} .d2{transition-delay:.14s} .d3{transition-delay:.21s} .d4{transition-delay:.28s}
 
-/* ════════════════════════════
-   NAV
-════════════════════════════ */
+/* ════════════ NAV ════════════ */
 nav {
-  position: sticky; top: 0; z-index: 400;
-  height: var(--nav-h);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 2rem;
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(28px) saturate(200%);
-  -webkit-backdrop-filter: blur(28px) saturate(200%);
-  border-bottom: 1px solid rgba(0,0,0,0.055);
+  position:sticky; top:0; z-index:400; height:var(--nav-h);
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding:0 2rem;
+  background:rgba(255,255,255,0.78);
+  backdrop-filter:blur(30px) saturate(200%);
+  -webkit-backdrop-filter:blur(30px) saturate(200%);
+  border-bottom:1px solid rgba(0,0,0,0.055);
 }
+.logo-wrap { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
+.logo-mark { width:40px; height:30px; border-radius:8px; overflow:hidden; flex-shrink:0; box-shadow:0 2px 10px rgba(232,240,0,0.38); }
+.logo-text { display:flex; flex-direction:column; gap:1px; }
+.logo-name { font-size:13px; font-weight:800; letter-spacing:0.02em; text-transform:uppercase; color:var(--ink); line-height:1; }
+.logo-sub  { font-size:9px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray2); line-height:1; }
 
-.logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-
-.logo-mark {
-  width: 40px; height: 30px; border-radius: 8px;
-  overflow: hidden; flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(232,240,0,0.35);
+.nav-center { display:flex; gap:0; list-style:none; }
+.nav-center a {
+  display:block; padding:0.38rem 0.85rem;
+  text-decoration:none; font-size:11.5px; font-weight:600;
+  letter-spacing:0.04em; color:var(--gray); text-transform:uppercase;
+  border-radius:10px; transition:color 0.15s, background 0.15s;
 }
+.nav-center a:hover { color:var(--ink); background:var(--surface); }
 
-.logo-text { display: flex; flex-direction: column; gap: 1px; }
-.logo-name { font-size: 13px; font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; color: var(--ink); line-height: 1; }
-.logo-sub  { font-size: 9px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray2); line-height: 1; }
+.nav-right { display:flex; align-items:center; gap:0.6rem; flex-shrink:0; }
 
-.nav-links { display: flex; gap: 0; list-style: none; }
-.nav-links a {
-  display: block; padding: 0.38rem 0.9rem;
-  text-decoration: none; font-size: 12px; font-weight: 600;
-  letter-spacing: 0.04em; color: var(--gray); text-transform: uppercase;
-  border-radius: 10px; transition: color 0.15s, background 0.15s;
+/* lang toggle */
+.lang-toggle {
+  display:flex; align-items:center;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:100px; padding:3px; gap:2px;
 }
-.nav-links a:hover { color: var(--ink); background: var(--surface); }
+.lang-btn {
+  font-size:10.5px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase;
+  padding:4px 10px; border-radius:100px; border:none; cursor:pointer;
+  background:transparent; color:var(--gray);
+  transition:background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.lang-btn.active { background:var(--white); color:var(--ink); box-shadow:0 1px 6px rgba(0,0,0,0.1); }
 
 .nav-btn {
-  background: var(--y); color: var(--ink);
-  padding: 0.52rem 1.2rem; border-radius: 10px;
-  font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em;
-  text-transform: uppercase; border: none; cursor: pointer;
-  text-decoration: none; transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
-  white-space: nowrap; flex-shrink: 0;
-  box-shadow: 0 2px 12px var(--y-glow);
+  background:var(--y); color:var(--ink);
+  padding:0.5rem 1.15rem; border-radius:10px;
+  font-size:11.5px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
+  border:none; cursor:pointer; text-decoration:none;
+  transition:background 0.18s, transform 0.15s, box-shadow 0.18s;
+  box-shadow:0 2px 12px var(--y-glow);
 }
-.nav-btn:hover { background: var(--y2); transform: scale(0.96); box-shadow: 0 4px 18px var(--y-glow); }
+.nav-btn:hover { background:var(--y2); transform:scale(0.96); }
 
-/* hamburger */
-.hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer;
-  padding: 4px; border-radius: 6px;
-}
-.hamburger span {
-  display: block; width: 22px; height: 2px;
-  background: var(--ink); border-radius: 2px;
-  transition: transform 0.3s, opacity 0.3s;
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+.hamburger span { display:block; width:22px; height:2px; background:var(--ink); border-radius:2px; transition:transform 0.28s,opacity 0.28s; }
+.hamburger.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2){ opacity:0; }
+.hamburger.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
 
-/* mobile drawer */
 .mobile-menu {
-  display: none; position: fixed; inset: var(--nav-h) 0 0 0;
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(24px);
-  z-index: 350; flex-direction: column;
-  padding: 2rem 1.75rem; gap: 0;
-  opacity: 0; transform: translateY(-8px);
-  transition: opacity 0.22s, transform 0.22s;
-  pointer-events: none;
+  display:none; position:fixed; inset:var(--nav-h) 0 0 0;
+  background:rgba(255,255,255,0.97); backdrop-filter:blur(24px);
+  z-index:350; flex-direction:column;
+  padding:2rem 1.75rem; gap:0;
+  opacity:0; transform:translateY(-8px);
+  transition:opacity 0.22s, transform 0.22s; pointer-events:none;
 }
-.mobile-menu.open { opacity: 1; transform: none; pointer-events: all; }
+.mobile-menu.open { opacity:1; transform:none; pointer-events:all; }
 .mobile-menu a {
-  display: block; padding: 1rem 0;
-  font-family: 'Syne', sans-serif;
-  font-size: 22px; font-weight: 700; color: var(--ink);
-  text-decoration: none; border-bottom: 1px solid var(--border);
-  transition: color 0.15s;
+  display:block; padding:1rem 0;
+  font-family:'Syne',sans-serif; font-size:22px; font-weight:700; color:var(--ink);
+  text-decoration:none; border-bottom:1px solid var(--border); transition:color 0.15s;
 }
-.mobile-menu a:hover { color: var(--g); }
+.mobile-menu a:hover { color:var(--g); }
 .mobile-menu .m-cta {
-  margin-top: 1.5rem; background: var(--y); color: var(--ink);
-  padding: 0.95rem; border-radius: 14px; text-align: center;
-  font-size: 14px; font-weight: 800; letter-spacing: 0.05em;
-  text-transform: uppercase; border: none;
+  margin-top:1.5rem; background:var(--y); color:var(--ink);
+  padding:0.95rem; border-radius:14px; text-align:center;
+  font-size:14px; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; border:none;
 }
-
-/* ════════════════════════════
-   HERO
-════════════════════════════ */
-.hero-section {
-  background: var(--white);
-  position: relative; overflow: hidden;
+.mobile-lang { display:flex; gap:0.5rem; margin-top:1.5rem; }
+.mobile-lang button {
+  flex:1; padding:0.65rem; border-radius:10px; border:1.5px solid var(--border);
+  font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+  cursor:pointer; background:transparent; color:var(--gray); transition:all 0.18s;
 }
+.mobile-lang button.active { background:var(--y); border-color:var(--y); color:var(--ink); }
 
-/* background orb / gradient mesh */
+/* ════════════ HERO ════════════ */
+.hero-section { background:var(--white); position:relative; overflow:hidden; }
 .hero-section::before {
-  content: '';
-  position: absolute;
-  top: -160px; right: -200px;
-  width: 700px; height: 700px;
-  background: radial-gradient(ellipse at center, rgba(157,199,20,0.12) 0%, rgba(232,240,0,0.07) 45%, transparent 75%);
-  pointer-events: none;
-  border-radius: 50%;
+  content:''; position:absolute; top:-180px; right:-220px;
+  width:750px; height:750px;
+  background:radial-gradient(ellipse at center, rgba(157,199,20,0.11) 0%, rgba(232,240,0,0.06) 50%, transparent 75%);
+  pointer-events:none; border-radius:50%;
 }
-
 .hero {
-  min-height: calc(100svh - var(--nav-h));
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 3rem;
-  align-items: center;
-  padding: 5rem 2rem 4rem;
-  max-width: 1180px; margin: 0 auto;
-  position: relative;
+  min-height:calc(100svh - var(--nav-h));
+  display:grid; grid-template-columns:1fr 320px; gap:2.5rem;
+  align-items:center; padding:5rem 2rem 4rem;
+  max-width:1180px; margin:0 auto; position:relative;
 }
-
 .hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--g-dim);
-  border: 1px solid rgba(157,199,20,0.3);
-  border-radius: 100px;
-  padding: 5px 14px;
-  font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--g); margin-bottom: 1.6rem;
+  display:inline-flex; align-items:center; gap:7px;
+  background:var(--g-dim); border:1px solid rgba(157,199,20,0.28);
+  border-radius:100px; padding:5px 13px;
+  font-size:10.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--g); margin-bottom:1.5rem;
 }
-.hero-eyebrow::before {
-  content: ''; width: 5px; height: 5px;
-  background: var(--g); border-radius: 50%;
-}
-
-.hero h1 {
-  font-size: var(--fs-display);
-  font-weight: 800; line-height: 0.96; letter-spacing: -0.04em; color: var(--ink);
-}
-.hero h1 .acc { color: var(--g); }
-.hero h1 .acc2 {
-  position: relative; display: inline-block;
-  color: var(--ink);
-}
+.hero-eyebrow::before { content:''; width:5px; height:5px; background:var(--g); border-radius:50%; }
+.hero h1 { font-size:var(--fs-disp); font-weight:800; line-height:0.97; letter-spacing:-0.04em; }
+.hero h1 .acc  { color:var(--g); }
+.hero h1 .acc2 { position:relative; display:inline-block; }
 .hero h1 .acc2::after {
-  content: '';
-  position: absolute; left: 0; bottom: 4px;
-  width: 100%; height: 6px;
-  background: var(--y);
-  border-radius: 3px;
-  z-index: -1;
+  content:''; position:absolute; left:0; bottom:3px;
+  width:100%; height:6px; background:var(--y); border-radius:3px; z-index:-1;
 }
+.hero-desc { font-size:15.5px; color:var(--gray); line-height:1.8; margin-top:1.5rem; max-width:450px; }
+.hero-actions { display:flex; gap:0.65rem; margin-top:2rem; flex-wrap:wrap; }
 
-.hero-desc {
-  font-size: 16px; font-weight: 400; color: var(--gray);
-  line-height: 1.8; margin-top: 1.6rem; max-width: 460px;
-}
-
-.hero-actions { display: flex; gap: 0.7rem; margin-top: 2.25rem; flex-wrap: wrap; }
-
+/* btns */
 .btn-y {
-  background: var(--y); color: var(--ink);
-  padding: 0.82rem 1.6rem; border-radius: 13px;
-  font-size: 12.5px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
-  border: none; cursor: pointer; text-decoration: none; display: inline-block;
-  transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
-  box-shadow: 0 4px 20px rgba(232,240,0,0.5);
+  background:var(--y); color:var(--ink);
+  padding:0.8rem 1.55rem; border-radius:12px;
+  font-size:12.5px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+  border:none; cursor:pointer; text-decoration:none; display:inline-block;
+  transition:background 0.18s, transform 0.15s, box-shadow 0.18s;
+  box-shadow:0 4px 20px rgba(232,240,0,0.45);
 }
-.btn-y:hover { background: var(--y2); transform: scale(0.97); box-shadow: 0 6px 28px rgba(232,240,0,0.55); }
-
+.btn-y:hover { background:var(--y2); transform:scale(0.97); }
 .btn-ghost {
-  background: transparent; color: var(--ink);
-  padding: 0.82rem 1.6rem; border-radius: 13px;
-  font-size: 12.5px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
-  border: 1.5px solid var(--border2); cursor: pointer; text-decoration: none; display: inline-block;
-  transition: all 0.18s;
-  border-color: rgba(0,0,0,0.12);
+  background:transparent; color:var(--ink);
+  padding:0.8rem 1.55rem; border-radius:12px;
+  font-size:12.5px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+  border:1.5px solid rgba(0,0,0,0.12); cursor:pointer; text-decoration:none; display:inline-block;
+  transition:all 0.18s;
 }
-.btn-ghost:hover { border-color: #aaa; background: var(--surface); }
+.btn-ghost:hover { border-color:#aaa; background:var(--surface); }
+.btn-dark {
+  background:var(--ink); color:#fff;
+  padding:0.82rem 1.85rem; border-radius:12px;
+  font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+  border:none; cursor:pointer; text-decoration:none; display:inline-block; text-align:center;
+  transition:background 0.18s, transform 0.15s; white-space:nowrap; flex-shrink:0;
+}
+.btn-dark:hover { background:#2a2a2e; transform:scale(0.97); }
 
-/* ── HERO STATS CARD (SwiftUI widget feel) ── */
+/* hero card */
 .hero-card {
-  background: var(--ink2);
-  border-radius: 24px;
-  padding: 0;
-  overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.04);
-  display: flex; flex-direction: column;
+  background:var(--ink2); border-radius:22px; overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.04);
+  display:flex; flex-direction:column;
+  transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  will-change:transform;
 }
-
 .hero-card-row {
-  padding: 1.6rem 1.85rem;
-  border-bottom: 1px solid rgba(255,255,255,0.055);
-  position: relative;
+  padding:1.5rem 1.75rem;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  position:relative; cursor:default; transition:background 0.2s;
 }
-.hero-card-row:last-child { border-bottom: none; }
-
-/* accent stripe on left */
+.hero-card-row:last-child { border-bottom:none; }
+.hero-card-row:hover { background:rgba(255,255,255,0.03); }
 .hero-card-row::before {
-  content: ''; position: absolute;
-  left: 0; top: 20%; height: 60%; width: 3px;
-  background: var(--y); border-radius: 0 3px 3px 0;
-  opacity: 0;
-  transition: opacity 0.2s;
+  content:''; position:absolute; left:0; top:18%; height:64%; width:3px;
+  background:var(--y); border-radius:0 3px 3px 0;
+  transform:scaleY(0); transform-origin:center;
+  transition:transform 0.22s cubic-bezier(0.22,1,0.36,1);
 }
-.hero-card-row:hover::before { opacity: 1; }
+.hero-card-row:hover::before { transform:scaleY(1); }
+.h-num   { font-size:3rem; font-weight:800; color:var(--y); line-height:1; letter-spacing:-0.05em; }
+.h-num span { font-size:1.6rem; }
+.h-label { font-size:9.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-top:0.3rem; }
+.h-desc  { font-size:12.5px; color:rgba(255,255,255,0.42); margin-top:0.2rem; line-height:1.5; }
 
-.h-num   {
-  font-size: 3.6rem; font-weight: 800; color: var(--y);
-  line-height: 1; letter-spacing: -0.05em;
-}
-.h-num span { font-size: 2rem; }
-.h-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
-  text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 0.4rem;
-}
-.h-desc  { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 0.25rem; line-height: 1.5; }
+.y-bar { height:3px; background:linear-gradient(90deg,var(--g),var(--y)); }
 
-/* ─ DIVIDER ─ */
-.y-bar { height: 3px; background: linear-gradient(90deg, var(--g), var(--y)); }
-
-/* ════════════════════════════
-   SHARED LAYOUT
-════════════════════════════ */
-.wrap {
-  padding: 6rem 2rem;
-  max-width: 1180px; margin: 0 auto;
-}
-
+/* ════════════ SHARED ════════════ */
+.wrap { padding:5.5rem 2rem; max-width:1180px; margin:0 auto; }
 .eyebrow {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 10.5px; font-weight: 700;
-  letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); margin-bottom: 1rem;
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:10.5px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--g); margin-bottom:0.85rem;
 }
-.eyebrow::before {
-  content: ''; width: 16px; height: 2px;
-  background: var(--g); border-radius: 2px;
-}
+.eyebrow::before { content:''; width:16px; height:2px; background:var(--g); border-radius:2px; }
+.sec-h2 { font-size:clamp(1.85rem,3vw,2.75rem); font-weight:800; line-height:1.06; letter-spacing:-0.035em; }
+.body-p { font-size:15.5px; color:var(--gray); line-height:1.82; margin-top:0.9rem; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
 
-.sec-h2 {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(1.9rem, 3.2vw, 2.9rem);
-  font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; color: var(--ink);
-}
-
-.body-p { font-size: 15.5px; color: var(--gray); line-height: 1.82; margin-top: 1rem; }
-
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5.5rem; align-items: start; }
-
-/* ════════════════════════════
-   MISSION
-════════════════════════════ */
-.mission-bg { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
+/* ════════════ MISSION ════════════ */
+.mission-bg { border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
 .quote-pill {
-  background: var(--y); border-radius: var(--r);
-  padding: 2rem 2.1rem; margin-top: 1.75rem;
-  position: relative; overflow: hidden;
+  background:var(--y); border-radius:var(--r);
+  padding:1.85rem 2rem; margin-top:1.75rem; position:relative; overflow:hidden;
 }
 .quote-pill::before {
-  content: '\201C';
-  position: absolute; top: -10px; right: 16px;
-  font-size: 96px; font-weight: 800; color: rgba(0,0,0,0.07);
-  font-family: 'Syne', sans-serif; line-height: 1;
+  content:'\201C'; position:absolute; top:-10px; right:14px;
+  font-size:88px; font-weight:800; color:rgba(0,0,0,0.07);
+  font-family:'Syne',sans-serif; line-height:1;
 }
-.quote-pill p { font-size: 15.5px; font-weight: 700; line-height: 1.65; color: var(--ink); letter-spacing: -0.01em; position: relative; }
-
+.quote-pill p { font-size:15px; font-weight:700; line-height:1.65; color:var(--ink); position:relative; }
 .info-tile {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 1.6rem 1.85rem; margin-top: 0.85rem;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r); padding:1.5rem 1.75rem; margin-top:0.75rem;
 }
-.info-tile p { font-size: 14px; color: var(--gray); line-height: 1.8; }
-
-.values-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.75rem; }
+.info-tile p { font-size:14px; color:var(--gray); line-height:1.8; }
+.values-row { display:flex; gap:0.45rem; flex-wrap:wrap; margin-top:1.6rem; }
 .val-chip {
-  background: var(--surface); color: var(--ink);
-  border: 1px solid var(--border); padding: 0.4rem 0.95rem;
-  border-radius: 100px; font-size: 12px; font-weight: 600;
-  transition: background 0.18s, border-color 0.18s, transform 0.15s; cursor: default;
+  background:var(--surface); color:var(--ink);
+  border:1px solid var(--border); padding:0.38rem 0.9rem;
+  border-radius:100px; font-size:12px; font-weight:600;
+  transition:background 0.18s, border-color 0.18s, transform 0.15s; cursor:default;
 }
-.val-chip:hover { background: var(--y); border-color: var(--y); transform: scale(0.97); }
+.val-chip:hover { background:var(--y); border-color:var(--y); transform:scale(0.97); }
 
-/* ════════════════════════════
-   HABEAS
-════════════════════════════ */
-.habeas-bg {
-  background: var(--ink);
-  padding: 6rem 2rem;
-}
-.habeas-inner { max-width: 1180px; margin: 0 auto; }
+/* ════════════ HABEAS (dark) ════════════ */
+.habeas-bg { background:var(--ink); padding:5.5rem 2rem; }
+.habeas-inner { max-width:1180px; margin:0 auto; }
+.habeas-bg .eyebrow { color:var(--y); }
+.habeas-bg .eyebrow::before { background:var(--y); }
+.habeas-bg .sec-h2 { color:#fff; }
+.habeas-bg .body-p { color:rgba(255,255,255,0.48); }
 
-/* override text colors inside dark section */
-.habeas-bg .eyebrow { color: var(--y); }
-.habeas-bg .eyebrow::before { background: var(--y); }
-.habeas-bg .sec-h2 { color: #fff; }
-.habeas-bg .body-p { color: rgba(255,255,255,0.5); }
-
-.steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 3rem; }
-
+.steps-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:3rem; }
 .step-card {
-  background: var(--ink2); border-radius: var(--r); border: 1px solid rgba(255,255,255,0.06);
-  padding: 2rem 1.75rem;
-  transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s, border-color 0.2s;
+  background:var(--ink2); border-radius:var(--r); border:1px solid rgba(255,255,255,0.06);
+  padding:1.75rem 1.6rem;
+  transition:transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s, border-color 0.22s;
 }
-.step-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 44px rgba(0,0,0,0.35);
-  border-color: rgba(232,240,0,0.18);
-}
-
+.step-card:hover { transform:translateY(-5px); box-shadow:0 18px 44px rgba(0,0,0,0.35); border-color:rgba(232,240,0,0.2); }
 .step-num {
-  font-size: 10px; font-weight: 800; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--y); margin-bottom: 1rem;
-  display: flex; align-items: center; gap: 8px;
+  font-size:9.5px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--y); margin-bottom:0.9rem; display:flex; align-items:center; gap:7px;
 }
-.step-num::before { content: ''; width: 20px; height: 2px; background: var(--y); border-radius: 2px; }
-
-.step-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
-.step-body  { font-size: 13.5px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+.step-num::before { content:''; width:18px; height:2px; background:var(--y); border-radius:2px; }
+.step-title { font-size:15px; font-weight:700; color:#fff; margin-bottom:0.45rem; }
+.step-body  { font-size:13px; color:rgba(255,255,255,0.43); line-height:1.7; }
 
 .habeas-callout {
-  background: var(--y); border-radius: var(--r);
-  padding: 2.4rem 2.75rem; margin-top: 1rem;
-  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
-  box-shadow: 0 12px 44px rgba(232,240,0,0.25);
+  background:var(--y); border-radius:var(--r);
+  padding:2.25rem 2.6rem; margin-top:1rem;
+  display:flex; align-items:center; justify-content:space-between; gap:2rem;
+  box-shadow:0 12px 44px rgba(232,240,0,0.22);
 }
-.habeas-callout p { font-family: 'Syne', sans-serif; font-size: 17.5px; font-weight: 800; color: var(--ink); line-height: 1.45; max-width: 580px; letter-spacing: -0.02em; }
-.habeas-callout p span { text-decoration: underline; text-underline-offset: 3px; }
+.habeas-callout p { font-family:'Syne',sans-serif; font-size:17px; font-weight:800; color:var(--ink); line-height:1.45; max-width:560px; letter-spacing:-0.02em; }
+.habeas-callout p span { text-decoration:underline; text-underline-offset:3px; }
 
-.btn-dark {
-  background: var(--ink); color: #fff;
-  padding: 0.85rem 2rem; border-radius: 12px;
-  font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-  border: none; cursor: pointer; text-decoration: none; display: block; text-align: center;
-  transition: background 0.18s, transform 0.15s;
-  white-space: nowrap; flex-shrink: 0;
-}
-.btn-dark:hover { background: #2a2a2e; transform: scale(0.97); }
-
-/* ════════════════════════════
-   PROGRAMS
-════════════════════════════ */
-.programs-section { border-top: 1px solid var(--border); }
-
-.programs-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin-top: 3rem; }
-
+/* ════════════ PROGRAMS (compact horizontal tiles) ════════════ */
+.programs-section { border-top:1px solid var(--border); }
+.programs-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:0.85rem; margin-top:2.75rem; }
 .prog-card {
-  background: var(--white); border-radius: var(--r); border: 1px solid var(--border);
-  padding: 2rem 1.85rem;
-  transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s, border-color 0.2s;
+  background:var(--white); border-radius:var(--r); border:1px solid var(--border);
+  padding:1.45rem 1.5rem;
+  display:flex; gap:1rem; align-items:flex-start;
+  transition:transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s, border-color 0.22s;
 }
-.prog-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.07);
-  border-color: rgba(157,199,20,0.3);
-}
-
+.prog-card:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,0.07); border-color:rgba(157,199,20,0.3); }
 .prog-icon {
-  width: 44px; height: 44px; border-radius: 13px;
-  background: var(--y);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; margin-bottom: 1.25rem;
-  box-shadow: 0 4px 14px rgba(232,240,0,0.35);
+  width:38px; height:38px; min-width:38px; border-radius:11px;
+  background:var(--y); display:flex; align-items:center; justify-content:center;
+  font-size:17px; box-shadow:0 3px 10px rgba(232,240,0,0.3);
+  flex-shrink:0;
 }
-.prog-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
-.prog-body  { font-size: 13.5px; color: var(--gray); line-height: 1.7; }
+.prog-content { flex:1; min-width:0; }
+.prog-title { font-size:14px; font-weight:700; color:var(--ink); margin-bottom:0.3rem; }
+.prog-body  { font-size:12.5px; color:var(--gray); line-height:1.65; }
 
-/* ════════════════════════════
-   FAMILIES
-════════════════════════════ */
-.families-bg {
-  background: var(--surface);
-  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+/* ════════════ SUCCESSFUL CASES ════════════ */
+.cases-bg { background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+
+/* tabs */
+.cases-tabs {
+  display:flex; gap:0.4rem; margin-top:2.5rem;
+  background:var(--surface2); border-radius:13px; padding:4px;
+  width:fit-content;
 }
-
-.stories-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin-top: 3rem; }
-
-.story-card {
-  background: var(--white); border-radius: var(--r); border: 1px solid var(--border);
-  padding: 2.1rem 1.9rem;
-  transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s;
+.tab-btn {
+  padding:0.48rem 1.05rem; border-radius:10px; border:none; cursor:pointer;
+  font-size:11.5px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+  background:transparent; color:var(--gray);
+  transition:background 0.2s, color 0.2s, box-shadow 0.2s;
 }
-.story-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(0,0,0,0.07); }
+.tab-btn.active { background:var(--white); color:var(--ink); box-shadow:0 2px 10px rgba(0,0,0,0.09); }
 
-.story-tag {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: var(--y); color: var(--ink); font-size: 10px; font-weight: 800;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 4px 12px; border-radius: 100px; margin-bottom: 1.1rem;
+.cases-panel { display:none; animation:fadeUp 0.35s cubic-bezier(0.22,1,0.36,1); }
+.cases-panel.active { display:block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+
+/* case cards */
+.case-card {
+  background:var(--white); border-radius:var(--r); border:1px solid var(--border);
+  padding:1.5rem 1.65rem; margin-top:0.85rem;
+  display:flex; align-items:flex-start; gap:1.1rem;
+  transition:transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s;
 }
-.story-name { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 0.7rem; letter-spacing: -0.02em; }
-.story-body { font-size: 14px; color: var(--gray); line-height: 1.75; }
+.case-card:hover { transform:translateY(-3px); box-shadow:0 10px 32px rgba(0,0,0,0.07); }
+.case-badge {
+  width:40px; height:40px; min-width:40px; border-radius:12px;
+  background:var(--surface2); display:flex; align-items:center; justify-content:center;
+  font-size:17px; flex-shrink:0;
+}
+.case-badge.win { background:var(--y); }
+.case-info { flex:1; min-width:0; }
+.case-outcome {
+  display:inline-flex; align-items:center; gap:4px;
+  background:var(--g-dim); border:1px solid rgba(157,199,20,0.25);
+  border-radius:100px; padding:3px 9px;
+  font-size:9.5px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--g); margin-bottom:0.5rem;
+}
+.case-title { font-size:14.5px; font-weight:700; color:var(--ink); margin-bottom:0.28rem; }
+.case-body  { font-size:13px; color:var(--gray); line-height:1.65; }
 
-.support-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 3rem; }
-
+/* support */
+.support-row { display:grid; grid-template-columns:repeat(3,1fr); gap:0.85rem; margin-top:2.75rem; }
 .fsupp {
-  background: var(--white); border-radius: var(--r); border: 1px solid var(--border);
-  padding: 1.85rem 1.65rem;
-  transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s;
+  background:var(--white); border-radius:var(--r); border:1px solid var(--border);
+  padding:1.55rem 1.45rem;
+  transition:transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s;
 }
-.fsupp:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(0,0,0,0.07); }
-
+.fsupp:hover { transform:translateY(-4px); box-shadow:0 10px 32px rgba(0,0,0,0.07); }
 .fsupp-tag {
-  display: inline-block; background: var(--surface2); color: var(--gray);
-  border: 1px solid var(--border); font-size: 9.5px; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  padding: 4px 10px; border-radius: 100px; margin-bottom: 0.9rem;
+  display:inline-block; background:var(--surface2); color:var(--gray);
+  border:1px solid var(--border); font-size:9.5px; font-weight:700;
+  letter-spacing:0.14em; text-transform:uppercase;
+  padding:4px 10px; border-radius:100px; margin-bottom:0.8rem;
 }
-.fsupp h3 { font-family: 'Syne', sans-serif; font-size: 15.5px; font-weight: 700; color: var(--ink); margin-bottom: 0.45rem; }
-.fsupp p  { font-size: 13px; color: var(--gray); line-height: 1.7; }
+.fsupp h3 { font-size:14px; font-weight:700; color:var(--ink); margin-bottom:0.35rem; }
+.fsupp p  { font-size:13px; color:var(--gray); line-height:1.65; }
 
 .contact-row {
-  margin-top: 1rem; background: var(--ink2); border-radius: var(--r);
-  padding: 2rem 2.4rem;
-  display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+  margin-top:1rem; background:var(--ink2); border-radius:var(--r);
+  padding:1.85rem 2.25rem;
+  display:flex; justify-content:space-between; align-items:center; gap:1.5rem;
+  box-shadow:0 8px 32px rgba(0,0,0,0.14);
 }
-.contact-row p { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.65; max-width: 440px; }
+.contact-row p { font-size:15px; color:rgba(255,255,255,0.52); line-height:1.65; max-width:440px; }
 
-/* ════════════════════════════
-   VOLUNTEER (green CTA)
-════════════════════════════ */
-.vol-bg {
-  background: var(--g);
-  padding: 6rem 2rem;
-  position: relative; overflow: hidden;
-}
+/* ════════════ VOLUNTEER ════════════ */
+.vol-bg { background:var(--g); padding:5.5rem 2rem; position:relative; overflow:hidden; }
 .vol-bg::before {
-  content: '';
-  position: absolute; top: -80px; left: -80px;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(232,240,0,0.18) 0%, transparent 70%);
-  pointer-events: none;
+  content:''; position:absolute; top:-80px; left:-80px;
+  width:400px; height:400px;
+  background:radial-gradient(circle, rgba(232,240,0,0.18) 0%, transparent 70%);
+  pointer-events:none;
 }
-.vol-inner { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 3rem; position: relative; }
-.vol-inner h2 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 800; color: var(--ink); line-height: 1.08; letter-spacing: -0.035em; max-width: 520px; }
-.vol-btns { display: flex; flex-direction: column; gap: 0.7rem; min-width: 200px; }
-
+.vol-inner { max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:3rem; position:relative; }
+.vol-inner h2 { font-size:clamp(1.9rem,3.2vw,2.7rem); font-weight:800; color:var(--ink); line-height:1.08; letter-spacing:-0.035em; max-width:520px; }
+.vol-btns { display:flex; flex-direction:column; gap:0.65rem; min-width:200px; }
 .btn-od {
-  background: transparent; color: var(--ink);
-  padding: 0.85rem 2rem; border-radius: 12px;
-  font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-  border: 2px solid var(--ink); cursor: pointer; text-decoration: none; display: block; text-align: center;
-  transition: all 0.18s;
+  background:transparent; color:var(--ink);
+  padding:0.82rem 2rem; border-radius:12px;
+  font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+  border:2px solid var(--ink); cursor:pointer; text-decoration:none; display:block; text-align:center;
+  transition:all 0.18s;
 }
-.btn-od:hover { background: var(--ink); color: #fff; }
+.btn-od:hover { background:var(--ink); color:#fff; }
 
-/* ════════════════════════════
-   PARTNERS
-════════════════════════════ */
-.partners-bg { background: var(--surface); border-top: 1px solid var(--border); padding: 2.5rem 2rem; }
-.partners-inner { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
-.partners-label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray2); white-space: nowrap; }
-.partner-list { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+/* ════════════ PARTNERS ════════════ */
+.partners-bg { background:var(--surface); border-top:1px solid var(--border); padding:2.5rem 2rem; }
+.partners-inner { max-width:1180px; margin:0 auto; display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+.partners-label { font-size:10.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--gray2); white-space:nowrap; }
+.partner-list { display:flex; gap:0.5rem; flex-wrap:wrap; }
 .partner-pill {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 100px; padding: 0.38rem 1.05rem;
-  font-size: 12px; font-weight: 500; color: var(--gray);
-  transition: border-color 0.15s, color 0.15s;
+  background:var(--white); border:1px solid var(--border);
+  border-radius:100px; padding:0.38rem 1rem;
+  font-size:12px; font-weight:500; color:var(--gray);
+  transition:border-color 0.15s, color 0.15s;
 }
-.partner-pill:hover { border-color: var(--g); color: var(--ink); }
+.partner-pill:hover { border-color:var(--g); color:var(--ink); }
 
-/* ════════════════════════════
-   FOOTER
-════════════════════════════ */
+/* ════════════ FOOTER ════════════ */
 footer {
-  padding: 2rem 2rem; border-top: 1px solid var(--border);
-  display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+  padding:2rem; border-top:1px solid var(--border);
+  display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;
 }
-.footer-left { display: flex; align-items: center; gap: 10px; }
-.footer-org  { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--ink); }
-.footer-sub  { font-size: 12px; color: var(--gray); margin-top: 2px; }
-.footer-right{ font-size: 10.5px; color: var(--gray2); letter-spacing: 0.08em; text-transform: uppercase; }
+.footer-left { display:flex; align-items:center; gap:10px; }
+.footer-org  { font-size:13px; font-weight:700; color:var(--ink); }
+.footer-sub  { font-size:12px; color:var(--gray); margin-top:2px; }
+.footer-right{ font-size:10.5px; color:var(--gray2); letter-spacing:0.08em; text-transform:uppercase; }
 
-/* ════════════════════════════
-   RESPONSIVE — TABLET
-════════════════════════════ */
-@media (max-width: 1040px) {
-  .hero { grid-template-columns: 1fr; min-height: auto; padding: 3.5rem 2rem 4rem; }
-  .hero-card { flex-direction: row; }
-  .hero-card-row {
-    flex: 1; border-bottom: none !important;
-    border-right: 1px solid rgba(255,255,255,0.055);
-    padding: 1.5rem;
-  }
-  .hero-card-row:last-child { border-right: none; }
-  .h-num { font-size: 2.75rem; }
+/* ════════════ LANGUAGE ════════════ */
+body.es [data-en] { display:none; }
+body.en [data-es] { display:none; }
 
-  .two-col { grid-template-columns: 1fr; gap: 2.75rem; }
-  .steps-grid { grid-template-columns: 1fr; }
-  .programs-grid { grid-template-columns: 1fr; }
-  .stories-grid { grid-template-columns: 1fr; }
-  .support-row { grid-template-columns: 1fr 1fr; }
-  .habeas-callout { flex-direction: column; align-items: flex-start; }
-  .vol-inner { flex-direction: column; align-items: flex-start; }
-  .contact-row { flex-direction: column; align-items: flex-start; }
+/* ════════════ RESPONSIVE TABLET ════════════ */
+@media (max-width:1040px) {
+  .hero { grid-template-columns:1fr; min-height:auto; padding:3.5rem 2rem 4rem; }
+  .hero-card { flex-direction:row; }
+  .hero-card-row { flex:1; padding:1.3rem; border-bottom:none!important; border-right:1px solid rgba(255,255,255,0.05); }
+  .hero-card-row:last-child { border-right:none; }
+  .h-num { font-size:2.5rem; }
+  .two-col { grid-template-columns:1fr; gap:2.5rem; }
+  .steps-grid { grid-template-columns:1fr; }
+  .programs-grid { grid-template-columns:1fr; }
+  .support-row { grid-template-columns:1fr 1fr; }
+  .habeas-callout { flex-direction:column; align-items:flex-start; }
+  .vol-inner { flex-direction:column; align-items:flex-start; }
+  .contact-row { flex-direction:column; align-items:flex-start; }
 }
 
-/* ════════════════════════════
-   RESPONSIVE — MOBILE
-════════════════════════════ */
-@media (max-width: 680px) {
-  :root { --nav-h: 60px; }
+/* ════════════ RESPONSIVE MOBILE ════════════ */
+@media (max-width:680px) {
+  :root { --nav-h:60px; }
+  .nav-center { display:none; }
+  .nav-right .nav-btn { display:none; }
+  .hamburger { display:flex; }
+  .mobile-menu { display:flex; }
 
-  .nav-links, .nav-btn { display: none; }
-  .hamburger { display: flex; }
-  .mobile-menu { display: flex; }
+  .logo-name { font-size:12px; }
+  .logo-sub  { display:none; }
 
-  .logo-name { font-size: 12px; }
-  .logo-sub  { display: none; }
+  .hero { padding:2.75rem 1.25rem 3rem; }
+  .hero h1 { font-size:clamp(2.5rem,10vw,3.4rem); }
+  .hero-desc { font-size:15px; }
+  .hero-actions { flex-direction:column; align-items:stretch; }
+  .btn-y,.btn-ghost { text-align:center; padding:0.9rem; }
 
-  .hero { padding: 2.75rem 1.25rem 3rem; }
-  .hero h1 { font-size: clamp(2.6rem, 10.5vw, 3.6rem); }
-  .hero-desc { font-size: 15px; }
-  .hero-actions { flex-direction: column; align-items: stretch; }
-  .btn-y, .btn-ghost { text-align: center; padding: 0.95rem; }
+  .hero-card { flex-direction:column; }
+  .hero-card-row { border-right:none!important; border-bottom:1px solid rgba(255,255,255,0.05)!important; }
+  .hero-card-row:last-child { border-bottom:none!important; }
 
-  .hero-card { flex-direction: column; }
-  .hero-card-row { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.055) !important; }
-  .hero-card-row:last-child { border-bottom: none !important; }
-  .h-num { font-size: 3rem; }
+  .wrap,.habeas-bg,.vol-bg,.partners-bg { padding-left:1.25rem; padding-right:1.25rem; }
+  .wrap { padding-top:4rem; padding-bottom:4rem; }
+  .habeas-bg { padding:4rem 1.25rem; }
+  .vol-bg { padding:4rem 1.25rem; }
 
-  .wrap { padding: 4.5rem 1.25rem; }
-  .habeas-bg { padding: 4.5rem 1.25rem; }
-  .vol-bg    { padding: 4.5rem 1.25rem; }
-  .partners-bg { padding: 2rem 1.25rem; }
+  .sec-h2 { font-size:clamp(1.65rem,7vw,2.1rem); }
+  .steps-grid,.programs-grid,.support-row { grid-template-columns:1fr; gap:0.75rem; }
 
-  .sec-h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
-  .steps-grid, .programs-grid, .stories-grid, .support-row { grid-template-columns: 1fr; gap: 0.75rem; }
+  .cases-tabs { width:100%; }
+  .tab-btn { flex:1; text-align:center; font-size:10.5px; padding:0.45rem 0.5rem; }
+  .case-card { gap:0.85rem; }
 
-  .habeas-callout { padding: 1.85rem 1.5rem; }
-  .habeas-callout p { font-size: 15.5px; }
+  .habeas-callout { padding:1.75rem 1.5rem; }
+  .contact-row { padding:1.5rem; flex-direction:column; align-items:flex-start; }
+  .vol-inner h2 { font-size:1.9rem; }
+  .vol-btns { width:100%; }
+  .btn-dark,.btn-od { padding:0.9rem; }
 
-  .contact-row { padding: 1.65rem; }
-  .vol-inner h2 { font-size: 1.9rem; }
-  .vol-btns { width: 100%; }
-  .btn-dark, .btn-od { padding: 0.9rem; font-size: 12px; }
-
-  footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  footer { flex-direction:column; align-items:flex-start; gap:0.75rem; }
 }
 </style>
 </head>
-<body>
+<body class="en">
 
-<!-- ══════════ NAV ══════════ -->
+<!-- ══ NAV ══ -->
 <nav>
   <a class="logo-wrap" href="#">
     <div class="logo-mark">
@@ -632,83 +519,100 @@ footer {
     </div>
   </a>
 
-  <ul class="nav-links">
-    <li><a href="#mission">Mission</a></li>
+  <ul class="nav-center">
+    <li><a href="#mission"><span data-en>Mission</span><span data-es>Misión</span></a></li>
     <li><a href="#habeas">Habeas Corpus</a></li>
-    <li><a href="#programs">Programs</a></li>
-    <li><a href="#families">Families</a></li>
-    <li><a href="#volunteer">Volunteer</a></li>
+    <li><a href="#programs"><span data-en>Programs</span><span data-es>Programas</span></a></li>
+    <li><a href="#cases"><span data-en>Successful Cases</span><span data-es>Casos Exitosos</span></a></li>
+    <li><a href="#volunteer"><span data-en>Volunteer</span><span data-es>Voluntario</span></a></li>
   </ul>
 
-  <a class="nav-btn" href="#families">Get Help Now</a>
+  <div class="nav-right">
+    <div class="lang-toggle" role="group">
+      <button class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn"        id="btnEs" onclick="setLang('es')">ES</button>
+    </div>
+    <a class="nav-btn" href="#cases"><span data-en>Get Help Now</span><span data-es>Pedir Ayuda</span></a>
+  </div>
 
   <button class="hamburger" id="ham" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- mobile drawer -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#mission"   onclick="closeMenu()">Mission</a>
+  <a href="#mission"   onclick="closeMenu()"><span data-en>Mission</span><span data-es>Misión</span></a>
   <a href="#habeas"    onclick="closeMenu()">Habeas Corpus</a>
-  <a href="#programs"  onclick="closeMenu()">Programs</a>
-  <a href="#families"  onclick="closeMenu()">Families</a>
-  <a href="#volunteer" onclick="closeMenu()">Volunteer</a>
-  <a href="#families"  onclick="closeMenu()" class="m-cta">Get Help Now</a>
+  <a href="#programs"  onclick="closeMenu()"><span data-en>Programs</span><span data-es>Programas</span></a>
+  <a href="#cases"     onclick="closeMenu()"><span data-en>Successful Cases</span><span data-es>Casos Exitosos</span></a>
+  <a href="#volunteer" onclick="closeMenu()"><span data-en>Volunteer</span><span data-es>Voluntario</span></a>
+  <div class="mobile-lang">
+    <button id="mBtnEn" class="active" onclick="setLang('en')">English</button>
+    <button id="mBtnEs"               onclick="setLang('es')">Español</button>
+  </div>
+  <a href="#cases" onclick="closeMenu()" class="m-cta"><span data-en>Get Help Now</span><span data-es>Pedir Ayuda</span></a>
 </div>
 
-<!-- ══════════ HERO ══════════ -->
+<!-- ══ HERO ══ -->
 <section class="hero-section">
   <div class="hero">
     <div>
-      <div class="hero-eyebrow reveal">Justice Has No Borders</div>
+      <div class="hero-eyebrow reveal">
+        <span data-en>Justice Has No Borders</span>
+        <span data-es>La Justicia No Tiene Fronteras</span>
+      </div>
       <h1 class="reveal d1">
-        Freedom is a<br>
-        <span class="acc">fundamental</span><br>
-        <span class="acc2">right.</span>
+        <span data-en>Freedom is a<br><span class="acc">fundamental</span><br><span class="acc2">right.</span></span>
+        <span data-es>La libertad es un<br><span class="acc">derecho</span><br><span class="acc2">fundamental.</span></span>
       </h1>
       <p class="hero-desc reveal d2">
-        We fight for immigrants in ICE custody using every legal tool available — including habeas corpus — to restore liberty to those unjustly detained. Founded by South and Central Americans who lived it.
+        <span data-en>We fight for immigrants in ICE custody using every legal tool available — including habeas corpus — to restore liberty to those unjustly detained. Founded by South and Central Americans who lived it.</span>
+        <span data-es>Luchamos por los inmigrantes bajo custodia del ICE usando todas las herramientas legales disponibles — incluyendo el habeas corpus — para restaurar la libertad de quienes están detenidos injustamente.</span>
       </p>
       <div class="hero-actions reveal d3">
-        <a class="btn-y"     href="#families">Request Legal Help</a>
-        <a class="btn-ghost" href="#habeas">How We Help →</a>
+        <a class="btn-y" href="#cases"><span data-en>Request Legal Help</span><span data-es>Solicitar Ayuda Legal</span></a>
+        <a class="btn-ghost" href="#habeas"><span data-en>How We Help →</span><span data-es>Cómo Ayudamos →</span></a>
       </div>
     </div>
 
-    <div class="hero-card reveal d2">
+    <div class="hero-card reveal d2" id="heroCard">
       <div class="hero-card-row">
         <div class="h-num">5</div>
-        <div class="h-label">People Released</div>
-        <div class="h-desc">Freed from ICE detention through our legal advocacy</div>
+        <div class="h-label"><span data-en>People Released</span><span data-es>Personas Liberadas</span></div>
+        <div class="h-desc"><span data-en>Freed from ICE detention through our legal advocacy</span><span data-es>Liberadas de la detención del ICE mediante nuestra defensa legal</span></div>
       </div>
       <div class="hero-card-row">
         <div class="h-num">50<span>+</span></div>
-        <div class="h-label">In Custody</div>
-        <div class="h-desc">Active cases — fighting for release right now</div>
+        <div class="h-label"><span data-en>Active Cases</span><span data-es>Casos Activos</span></div>
+        <div class="h-desc"><span data-en>Fighting for release right now</span><span data-es>Luchando por su liberación ahora mismo</span></div>
       </div>
       <div class="hero-card-row">
         <div class="h-num">10<span>+</span></div>
-        <div class="h-label">Volunteers</div>
-        <div class="h-desc">Immigrants and allies united for justice</div>
+        <div class="h-label"><span data-en>Volunteers</span><span data-es>Voluntarios</span></div>
+        <div class="h-desc"><span data-en>Immigrants and allies united for justice</span><span data-es>Inmigrantes y aliados unidos por la justicia</span></div>
       </div>
     </div>
   </div>
   <div class="y-bar"></div>
 </section>
 
-<!-- ══════════ MISSION ══════════ -->
+<!-- ══ MISSION ══ -->
 <section id="mission" class="mission-bg">
   <div class="wrap">
     <div class="two-col">
       <div>
-        <span class="eyebrow reveal">Our Mission</span>
-        <h2 class="sec-h2 reveal d1">Born from community.<br>Built on dignity.</h2>
+        <span class="eyebrow reveal"><span data-en>Our Mission</span><span data-es>Nuestra Misión</span></span>
+        <h2 class="sec-h2 reveal d1">
+          <span data-en>Born from community.<br>Built on dignity.</span>
+          <span data-es>Nacidos de la comunidad.<br>Construidos sobre la dignidad.</span>
+        </h2>
         <p class="body-p reveal d2">
-          Paz y Dignidad Human Rights International Foundation was created to defend the human rights of migrant families from Central America, Mexico, and Latin America — and to protect human rights defenders throughout the Americas.
+          <span data-en>Paz y Dignidad Human Rights International Foundation was created to defend the human rights of migrant families from Central America, Mexico, and Latin America — and to protect human rights defenders throughout the Americas.</span>
+          <span data-es>La Fundación Paz y Dignidad fue creada para defender los derechos humanos de las familias migrantes de Centroamérica, México y América Latina — y proteger a los defensores de derechos humanos en toda América.</span>
         </p>
         <p class="body-p reveal d3">
-          We accompany migrants with empathy and commitment, offering integral support without discrimination. Through our network, we promote human rights, emotional well-being, and access to essential resources so every person can rebuild their life with dignity.
+          <span data-en>We accompany migrants with empathy and commitment, offering integral support without discrimination. Through our network, we promote human rights, emotional well-being, and access to essential resources so every person can rebuild their life with dignity.</span>
+          <span data-es>Acompañamos a los migrantes con empatía y compromiso, ofreciendo apoyo integral sin discriminación. Promovemos los derechos humanos, el bienestar emocional y el acceso a recursos esenciales para que cada persona pueda reconstruir su vida con dignidad.</span>
         </p>
         <div class="values-row reveal d4">
           <span class="val-chip">Solidaridad</span>
@@ -721,166 +625,272 @@ footer {
       </div>
       <div>
         <div class="quote-pill reveal d1">
-          <p>"We dream of a more humane society where every migrant in the United States lives with dignity, security, hope, and respect for their human rights."</p>
+          <p>
+            <span data-en>"We dream of a more humane society where every migrant in the United States lives with dignity, security, hope, and respect for their human rights."</span>
+            <span data-es>"Soñamos con una sociedad más humana donde cada migrante en los Estados Unidos viva con dignidad, seguridad, esperanza y respeto por sus derechos humanos."</span>
+          </p>
         </div>
         <div class="info-tile reveal d2">
-          <p>Founded by immigrants and allies who lived the system firsthand. Our leadership brings together human rights activists, immigration attorneys, and community organizers united by one mission: dignity for every migrant.</p>
+          <p>
+            <span data-en>Founded by immigrants and allies who lived the system firsthand. Our leadership brings together human rights activists, immigration attorneys, and community organizers united by one mission: dignity for every migrant.</span>
+            <span data-es>Fundada por inmigrantes y aliados que vivieron el sistema de primera mano. Nuestro liderazgo reúne a activistas de derechos humanos, abogados de inmigración y organizadores comunitarios unidos por una misión: dignidad para cada migrante.</span>
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ HABEAS CORPUS ══════════ -->
+<!-- ══ HABEAS ══ -->
 <section id="habeas" class="habeas-bg">
   <div class="habeas-inner">
     <div class="two-col">
       <div>
         <span class="eyebrow reveal">Habeas Corpus</span>
-        <h2 class="sec-h2 reveal d1">The right to<br>challenge detention.</h2>
+        <h2 class="sec-h2 reveal d1">
+          <span data-en>The right to<br>challenge detention.</span>
+          <span data-es>El derecho a<br>impugnar la detención.</span>
+        </h2>
       </div>
       <div>
         <p class="body-p reveal d1" style="margin-top:0;">
-          A writ of habeas corpus is a court order compelling the government to justify why a person is being held. It is one of the oldest and most powerful protections in democratic law — and our primary legal tool against arbitrary ICE detention.
+          <span data-en>A writ of habeas corpus is a court order compelling the government to justify why a person is being held. It is one of the oldest and most powerful protections in democratic law — and our primary legal tool against arbitrary ICE detention.</span>
+          <span data-es>Un recurso de habeas corpus es una orden judicial que obliga al gobierno a justificar por qué una persona está detenida. Es una de las protecciones más antiguas y poderosas del derecho democrático — y nuestra principal herramienta legal contra la detención arbitraria del ICE.</span>
         </p>
         <p class="body-p reveal d2">
-          We connect families with immigration attorneys, assist in preparing federal petitions, and support them at every stage of the federal court process.
+          <span data-en>We connect families with immigration attorneys, assist in preparing federal petitions, and support them at every stage of the federal court process.</span>
+          <span data-es>Conectamos familias con abogados de inmigración, ayudamos a preparar peticiones federales y las apoyamos en cada etapa del proceso judicial federal.</span>
         </p>
       </div>
     </div>
 
     <div class="steps-grid">
       <div class="step-card reveal d1">
-        <div class="step-num">Step 01</div>
-        <div class="step-title">Case Assessment</div>
-        <p class="step-body">We review detention circumstances and determine whether a habeas petition is the strongest legal path to freedom.</p>
+        <div class="step-num"><span data-en>Step 01</span><span data-es>Paso 01</span></div>
+        <div class="step-title"><span data-en>Case Assessment</span><span data-es>Evaluación del Caso</span></div>
+        <p class="step-body"><span data-en>We review detention circumstances and determine whether a habeas petition is the strongest legal path to freedom.</span><span data-es>Revisamos las circunstancias de la detención y determinamos si una petición de habeas es el camino legal más sólido hacia la libertad.</span></p>
       </div>
       <div class="step-card reveal d2">
-        <div class="step-num">Step 02</div>
-        <div class="step-title">Legal Filing</div>
-        <p class="step-body">We connect families with volunteer immigration attorneys and assist in preparing the federal habeas corpus petition.</p>
+        <div class="step-num"><span data-en>Step 02</span><span data-es>Paso 02</span></div>
+        <div class="step-title"><span data-en>Legal Filing</span><span data-es>Presentación Legal</span></div>
+        <p class="step-body"><span data-en>We connect families with volunteer immigration attorneys and assist in preparing the federal habeas corpus petition.</span><span data-es>Conectamos a las familias con abogados voluntarios de inmigración y ayudamos a preparar la petición federal de habeas corpus.</span></p>
       </div>
       <div class="step-card reveal d3">
-        <div class="step-num">Step 03</div>
-        <div class="step-title">Court Hearing</div>
-        <p class="step-body">The government must appear before a federal judge and justify the detention — or release the individual immediately.</p>
+        <div class="step-num"><span data-en>Step 03</span><span data-es>Paso 03</span></div>
+        <div class="step-title"><span data-en>Court Hearing</span><span data-es>Audiencia Judicial</span></div>
+        <p class="step-body"><span data-en>The government must appear before a federal judge and justify the detention — or release the individual immediately.</span><span data-es>El gobierno debe comparecer ante un juez federal y justificar la detención — o liberar al individuo de inmediato.</span></p>
       </div>
     </div>
 
     <div class="habeas-callout reveal">
-      <p>"Every person detained by ICE has the right to ask a court: <span>why am I here?</span> We make sure that question gets asked — and answered."</p>
-      <a class="btn-dark" href="#families" style="white-space:nowrap;flex-shrink:0;">File a Petition</a>
+      <p>
+        <span data-en>"Every person detained by ICE has the right to ask a court: <span>why am I here?</span> We make sure that question gets asked — and answered."</span>
+        <span data-es>"Toda persona detenida por el ICE tiene derecho a preguntarle a un tribunal: <span>¿por qué estoy aquí?</span> Nos aseguramos de que esa pregunta se haga — y se responda."</span>
+      </p>
+      <a class="btn-dark" href="#cases"><span data-en>File a Petition</span><span data-es>Presentar Petición</span></a>
     </div>
   </div>
 </section>
 
-<!-- ══════════ PROGRAMS ══════════ -->
+<!-- ══ PROGRAMS ══ -->
 <section id="programs" class="programs-section">
   <div class="wrap">
     <div style="max-width:600px;">
-      <span class="eyebrow reveal">Our Programs</span>
-      <h2 class="sec-h2 reveal d1">Holistic support<br>from day one.</h2>
+      <span class="eyebrow reveal"><span data-en>Our Programs</span><span data-es>Nuestros Programas</span></span>
+      <h2 class="sec-h2 reveal d1">
+        <span data-en>Holistic support<br>from day one.</span>
+        <span data-es>Apoyo integral<br>desde el primer día.</span>
+      </h2>
       <p class="body-p reveal d2">
-        Since May 2024, our shelter "Asylum Seeker Mission Firewood UMC" has served migrants and asylum seekers — offering food, housing, legal support, psychosocial therapy, yoga, and English classes. We currently serve 100+ families in partnership with local churches.
+        <span data-en>Since May 2024, our shelter "Asylum Seeker Mission Firewood UMC" has served migrants and asylum seekers — offering food, housing, legal support, psychosocial therapy, yoga, and English classes. We currently serve 100+ families in partnership with local churches.</span>
+        <span data-es>Desde mayo de 2024, nuestro refugio "Asylum Seeker Mission Firewood UMC" ha atendido a migrantes y solicitantes de asilo — ofreciendo comida, vivienda, apoyo legal, terapia psicosocial, yoga y clases de inglés. Actualmente servimos a más de 100 familias en asociación con iglesias locales.</span>
       </p>
     </div>
 
     <div class="programs-grid">
       <div class="prog-card reveal d1">
         <div class="prog-icon">⚖️</div>
-        <div class="prog-title">Migration &amp; Human Rights</div>
-        <p class="prog-body">Weekly legal sessions with volunteer immigration attorneys. We assist with asylum applications, habeas corpus filings, and rights education for newly arrived families.</p>
+        <div class="prog-content">
+          <div class="prog-title"><span data-en>Migration &amp; Human Rights</span><span data-es>Migración y Derechos Humanos</span></div>
+          <p class="prog-body"><span data-en>Weekly legal sessions with volunteer immigration attorneys. We assist with asylum applications, habeas corpus filings, and rights education for newly arrived families.</span><span data-es>Sesiones legales semanales con abogados voluntarios de inmigración. Asistimos con solicitudes de asilo, presentaciones de habeas corpus y educación sobre derechos.</span></p>
+        </div>
       </div>
       <div class="prog-card reveal d2">
         <div class="prog-icon">🏠</div>
-        <div class="prog-title">Transitional Housing</div>
-        <p class="prog-body">Emergency hotel programs in Kent and Everett — 50 rooms each — and transitional subsidies for families awaiting work permits. A bridge to independence.</p>
+        <div class="prog-content">
+          <div class="prog-title"><span data-en>Transitional Housing</span><span data-es>Vivienda Transitoria</span></div>
+          <p class="prog-body"><span data-en>Emergency hotel programs in Kent and Everett — 50 rooms each — and transitional subsidies for families awaiting work permits. A bridge to independence.</span><span data-es>Programas de hotel de emergencia en Kent y Everett — 50 habitaciones cada uno — y subsidios de transición para familias que esperan permisos de trabajo.</span></p>
+        </div>
       </div>
       <div class="prog-card reveal d3">
         <div class="prog-icon">📚</div>
-        <div class="prog-title">Education &amp; Opportunity</div>
-        <p class="prog-body">School enrollment for all children, English classes for adults, technical training, and youth mental health support including tutoring and art programs.</p>
+        <div class="prog-content">
+          <div class="prog-title"><span data-en>Education &amp; Opportunity</span><span data-es>Educación y Oportunidad</span></div>
+          <p class="prog-body"><span data-en>School enrollment for all children, English classes for adults, technical training, and youth mental health support including tutoring and art programs.</span><span data-es>Inscripción escolar para todos los niños, clases de inglés para adultos, formación técnica y apoyo a la salud mental juvenil.</span></p>
+        </div>
       </div>
       <div class="prog-card reveal d4">
         <div class="prog-icon">🌱</div>
-        <div class="prog-title">Cultural Roots</div>
-        <p class="prog-body">Gastronomy festivals, dance, theatre, and cultural celebrations that keep our communities' roots alive while building belonging in a new home.</p>
+        <div class="prog-content">
+          <div class="prog-title"><span data-en>Cultural Roots</span><span data-es>Raíces Culturales</span></div>
+          <p class="prog-body"><span data-en>Gastronomy festivals, dance, theatre, and cultural celebrations that keep our communities' roots alive while building belonging in a new home.</span><span data-es>Festivales gastronómicos, danza, teatro y celebraciones culturales que mantienen vivas las raíces de nuestras comunidades.</span></p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ FAMILIES ══════════ -->
-<section id="families" class="families-bg">
+<!-- ══ SUCCESSFUL CASES ══ -->
+<section id="cases" class="cases-bg">
   <div class="wrap">
-    <div class="two-col" style="margin-bottom:3rem;">
+    <div class="two-col" style="margin-bottom:2.5rem;">
       <div>
-        <span class="eyebrow reveal">Stories of Impact</span>
-        <h2 class="sec-h2 reveal d1">Real people.<br>Real change.</h2>
+        <span class="eyebrow reveal"><span data-en>Successful Cases</span><span data-es>Casos Exitosos</span></span>
+        <h2 class="sec-h2 reveal d1">
+          <span data-en>Real fights.<br>Real wins.</span>
+          <span data-es>Luchas reales.<br>Victorias reales.</span>
+        </h2>
       </div>
       <p class="body-p reveal d1" style="margin-top:0;">
-        Behind every number is a person with a story, a family waiting, and a future worth fighting for. Here are two of the people our community has supported.
+        <span data-en>Every case is a person — a mother, a father, a child. These are the victories our community has achieved through legal advocacy, solidarity, and determination.</span>
+        <span data-es>Cada caso es una persona — una madre, un padre, un hijo. Estas son las victorias que nuestra comunidad ha logrado mediante la defensa legal, la solidaridad y la determinación.</span>
       </p>
     </div>
 
-    <div class="stories-grid">
-      <div class="story-card reveal d1">
-        <div class="story-tag">✦ Community Leader</div>
-        <div class="story-name">Paola</div>
-        <p class="story-body">With over 15 years dedicated to serving vulnerable communities, Paola has worked on EU programs focused on food rights and prevention of gender-based violence. In Washington State, she has actively contributed to programs serving the migrant community — guiding families through integration processes. Recognized for her genuine commitment to those who need it most.</p>
+    <div class="cases-tabs reveal">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-released')">
+        <span data-en>Released</span><span data-es>Liberados</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-asylum')">
+        <span data-en>Asylum Granted</span><span data-es>Asilo Otorgado</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-pending')">
+        <span data-en>In Progress</span><span data-es>En Proceso</span>
+      </button>
+    </div>
+
+    <div id="tab-released" class="cases-panel active">
+      <div class="case-card">
+        <div class="case-badge win">✊</div>
+        <div class="case-info">
+          <div class="case-outcome"><span data-en>✦ Released from detention</span><span data-es>✦ Liberado de la detención</span></div>
+          <div class="case-title"><span data-en>Case #001 — Guatemalan Father of Three</span><span data-es>Caso #001 — Padre guatemalteco de tres hijos</span></div>
+          <p class="case-body"><span data-en>After 6 months in ICE detention in Tacoma, our legal team filed a federal habeas corpus petition. The judge ordered his release within 72 hours. He is now home with his family in Seattle.</span><span data-es>Tras 6 meses de detención del ICE en Tacoma, nuestro equipo legal presentó una petición federal de habeas corpus. El juez ordenó su liberación en 72 horas. Ahora está en casa con su familia en Seattle.</span></p>
+        </div>
       </div>
-      <div class="story-card reveal d2">
-        <div class="story-tag">✦ Your Story</div>
-        <div class="story-name">Could be yours.</div>
-        <p class="story-body">We believe every person's story deserves to be heard. If you or someone you know has been supported by Paz y Dignidad, we want to share that story — with permission — to show what community solidarity can do. Reach out to share your experience.</p>
+      <div class="case-card">
+        <div class="case-badge win">🕊️</div>
+        <div class="case-info">
+          <div class="case-outcome"><span data-en>✦ Bond hearing won</span><span data-es>✦ Audiencia de fianza ganada</span></div>
+          <div class="case-title"><span data-en>Case #002 — Salvadoran Mother</span><span data-es>Caso #002 — Madre salvadoreña</span></div>
+          <p class="case-body"><span data-en>Detained at the border with her two children after fleeing gang violence, we secured a bond hearing and helped her family raise the bond. She was reunited with her children within weeks.</span><span data-es>Detenida en la frontera con sus dos hijos tras huir de la violencia de pandillas, aseguramos una audiencia de fianza y ayudamos a su familia a reunir el monto. Se reunió con sus hijos en pocas semanas.</span></p>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-badge win">⚖️</div>
+        <div class="case-info">
+          <div class="case-outcome"><span data-en>✦ Wrongful detention overturned</span><span data-es>✦ Detención ilegal revertida</span></div>
+          <div class="case-title"><span data-en>Case #003 — Honduran Teenager</span><span data-es>Caso #003 — Adolescente hondureño</span></div>
+          <p class="case-body"><span data-en>A 17-year-old unaccompanied minor was improperly transferred to adult detention. We documented the violation and connected the family with legal counsel. He was transferred to appropriate facilities within days.</span><span data-es>Un menor no acompañado de 17 años fue trasladado incorrectamente a una instalación para adultos. Documentamos la violación y conectamos a la familia con asesoría legal. Fue trasladado a instalaciones adecuadas en días.</span></p>
+        </div>
       </div>
     </div>
 
-    <div style="margin-top:4.5rem;">
-      <span class="eyebrow reveal">For Families</span>
-      <h2 class="sec-h2 reveal d1">You are not alone in this.</h2>
+    <div id="tab-asylum" class="cases-panel">
+      <div class="case-card">
+        <div class="case-badge win">🏡</div>
+        <div class="case-info">
+          <div class="case-outcome"><span data-en>✦ Asylum approved</span><span data-es>✦ Asilo aprobado</span></div>
+          <div class="case-title"><span data-en>Case #004 — Nicaraguan Family</span><span data-es>Caso #004 — Familia nicaragüense</span></div>
+          <p class="case-body"><span data-en>A family of four fleeing political persecution received comprehensive case support from our volunteers — documentation, legal prep, and emotional support throughout the asylum process. Approved after 14 months.</span><span data-es>Una familia de cuatro personas que huía de la persecución política recibió apoyo integral de nuestros voluntarios — documentación, preparación legal y apoyo emocional. Aprobado tras 14 meses.</span></p>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-badge win">🌟</div>
+        <div class="case-info">
+          <div class="case-outcome"><span data-en>✦ Withholding of removal granted</span><span data-es>✦ Suspensión de deportación concedida</span></div>
+          <div class="case-title"><span data-en>Case #005 — Mexican Human Rights Defender</span><span data-es>Caso #005 — Defensor de derechos humanos mexicano</span></div>
+          <p class="case-body"><span data-en>A community organizer who faced death threats from a cartel in Michoacán was granted withholding of removal after our team helped document threats and connect him with specialized legal representation.</span><span data-es>Un organizador comunitario que enfrentó amenazas de muerte de un cartel en Michoacán recibió la suspensión de deportación después de que nuestro equipo ayudó a documentar las amenazas y conectarlo con representación legal especializada.</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-pending" class="cases-panel">
+      <div class="case-card">
+        <div class="case-badge">⏳</div>
+        <div class="case-info">
+          <div class="case-outcome" style="background:rgba(107,107,114,0.1);border-color:rgba(107,107,114,0.2);color:var(--gray);">
+            <span data-en>● Active · Federal Court</span><span data-es>● Activo · Tribunal Federal</span>
+          </div>
+          <div class="case-title"><span data-en>50+ Individuals Currently in Custody</span><span data-es>Más de 50 personas actualmente detenidas</span></div>
+          <p class="case-body"><span data-en>We are actively supporting over 50 individuals in ICE detention across Washington State. Each case receives assessment, family contact support, and legal referrals. No case is too complex — we fight for everyone.</span><span data-es>Estamos apoyando activamente a más de 50 personas bajo detención del ICE en todo el estado de Washington. Cada caso recibe evaluación, apoyo de contacto familiar y referencias legales. Ningún caso es demasiado complejo — luchamos por todos.</span></p>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-badge">📋</div>
+        <div class="case-info">
+          <div class="case-outcome" style="background:rgba(107,107,114,0.1);border-color:rgba(107,107,114,0.2);color:var(--gray);">
+            <span data-en>● Your case could be next</span><span data-es>● Tu caso podría ser el siguiente</span>
+          </div>
+          <div class="case-title"><span data-en>Is a Loved One in Detention?</span><span data-es>¿Tienes un ser querido detenido?</span></div>
+          <p class="case-body"><span data-en>Contact us within 24 hours of detention. The sooner we assess the case, the stronger our legal options. Reach out at info@pazydignidad.org or through our volunteer network.</span><span data-es>Contáctenos dentro de las 24 horas de la detención. Cuanto antes evaluemos el caso, más sólidas serán nuestras opciones legales. Escríbenos a info@pazydignidad.org o a través de nuestra red de voluntarios.</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:4rem;">
+      <span class="eyebrow reveal"><span data-en>For Families</span><span data-es>Para Familias</span></span>
+      <h2 class="sec-h2 reveal d1">
+        <span data-en>You are not alone in this.</span>
+        <span data-es>No estás solo en esto.</span>
+      </h2>
     </div>
 
     <div class="support-row">
       <div class="fsupp reveal d1">
-        <div class="fsupp-tag">Legal Support</div>
-        <h3>Know your rights</h3>
-        <p>We help families understand ICE detention, bond hearings, and how to request information about a detained loved one.</p>
+        <div class="fsupp-tag"><span data-en>Legal Support</span><span data-es>Apoyo Legal</span></div>
+        <h3><span data-en>Know your rights</span><span data-es>Conoce tus derechos</span></h3>
+        <p><span data-en>We help families understand ICE detention, bond hearings, and how to request information about a detained loved one.</span><span data-es>Ayudamos a las familias a entender la detención del ICE, las audiencias de fianza y cómo solicitar información sobre un ser querido detenido.</span></p>
       </div>
       <div class="fsupp reveal d2">
-        <div class="fsupp-tag">Documentation</div>
-        <h3>Gather evidence</h3>
-        <p>We assist in collecting records, witness statements, and materials that strengthen a habeas corpus filing in federal court.</p>
+        <div class="fsupp-tag"><span data-en>Documentation</span><span data-es>Documentación</span></div>
+        <h3><span data-en>Gather evidence</span><span data-es>Reunir evidencia</span></h3>
+        <p><span data-en>We assist in collecting records, witness statements, and materials that strengthen a habeas corpus filing in federal court.</span><span data-es>Ayudamos a recopilar registros, declaraciones de testigos y materiales que fortalezcan una presentación de habeas corpus en tribunal federal.</span></p>
       </div>
       <div class="fsupp reveal d3">
-        <div class="fsupp-tag">Community</div>
-        <h3>Volunteer network</h3>
-        <p>Our volunteers — many of whom have been through the system — offer translation, case management, and firsthand guidance.</p>
+        <div class="fsupp-tag"><span data-en>Community</span><span data-es>Comunidad</span></div>
+        <h3><span data-en>Volunteer network</span><span data-es>Red de voluntarios</span></h3>
+        <p><span data-en>Our volunteers — many of whom have been through the system — offer translation, case management, and firsthand guidance.</span><span data-es>Nuestros voluntarios — muchos de los cuales han pasado por el sistema — ofrecen traducción, gestión de casos y orientación de primera mano.</span></p>
       </div>
     </div>
 
     <div class="contact-row reveal">
-      <p>Have a family member in ICE custody? We can help you understand your options within 24 hours.</p>
-      <a class="btn-y" href="mailto:info@pazydignidad.org" style="white-space:nowrap;flex-shrink:0;">Contact Us Now</a>
+      <p><span data-en>Have a family member in ICE custody? We can help you understand your options within 24 hours.</span><span data-es>¿Tienes un familiar bajo custodia del ICE? Podemos ayudarte a entender tus opciones en 24 horas.</span></p>
+      <a class="btn-y" href="mailto:info@pazydignidad.org" style="white-space:nowrap;flex-shrink:0;">
+        <span data-en>Contact Us Now</span><span data-es>Contáctenos Ahora</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ══════════ VOLUNTEER ══════════ -->
+<!-- ══ VOLUNTEER ══ -->
 <section id="volunteer" class="vol-bg">
   <div class="vol-inner">
-    <h2 class="reveal">Every voice, every hour, every skill matters.</h2>
+    <h2 class="reveal">
+      <span data-en>Every voice, every hour, every skill matters.</span>
+      <span data-es>Cada voz, cada hora, cada habilidad importa.</span>
+    </h2>
     <div class="vol-btns reveal d1">
-      <a class="btn-dark" href="#">Become a Volunteer</a>
-      <a class="btn-od"   href="#">Make a Donation</a>
+      <a class="btn-dark" href="#"><span data-en>Become a Volunteer</span><span data-es>Ser Voluntario</span></a>
+      <a class="btn-od"   href="#"><span data-en>Make a Donation</span><span data-es>Hacer una Donación</span></a>
     </div>
   </div>
 </section>
 
-<!-- ══════════ PARTNERS ══════════ -->
+<!-- ══ PARTNERS ══ -->
 <section class="partners-bg">
   <div class="partners-inner">
-    <span class="partners-label">In partnership with</span>
+    <span class="partners-label"><span data-en>In partnership with</span><span data-es>En asociación con</span></span>
     <div class="partner-list">
       <span class="partner-pill">Plymouth Church UCC</span>
       <span class="partner-pill">Fairwood Community UMC</span>
@@ -891,7 +901,7 @@ footer {
   </div>
 </section>
 
-<!-- ══════════ FOOTER ══════════ -->
+<!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-left">
     <svg viewBox="0 0 28 21" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:22px;border-radius:5px;flex-shrink:0;box-shadow:0 2px 8px rgba(232,240,0,0.3)">
@@ -907,41 +917,69 @@ footer {
     </svg>
     <div>
       <div class="footer-org">Paz y Dignidad Human Rights International Foundation</div>
-      <div class="footer-sub">A nonprofit fighting for immigrant justice in Washington State and beyond.</div>
+      <div class="footer-sub">
+        <span data-en>A nonprofit fighting for immigrant justice in Washington State and beyond.</span>
+        <span data-es>Una organización sin fines de lucro que lucha por la justicia de los inmigrantes en Washington y más allá.</span>
+      </div>
     </div>
   </div>
-  <div class="footer-right">© 2025 Paz y Dignidad · All Rights Reserved</div>
+  <div class="footer-right">© 2025 Paz y Dignidad · <span data-en>All Rights Reserved</span><span data-es>Todos los Derechos Reservados</span></div>
 </footer>
 
 <script>
-/* ── Hamburger ── */
-const ham  = document.getElementById('ham');
-const menu = document.getElementById('mobileMenu');
-
-function closeMenu() {
-  ham.classList.remove('open');
-  menu.classList.remove('open');
-  document.body.style.overflow = '';
+/* ── LANG ── */
+function setLang(lang) {
+  document.body.className = lang;
+  document.getElementById('btnEn').classList.toggle('active', lang==='en');
+  document.getElementById('btnEs').classList.toggle('active', lang==='es');
+  document.getElementById('mBtnEn').classList.toggle('active', lang==='en');
+  document.getElementById('mBtnEs').classList.toggle('active', lang==='es');
 }
 
+/* ── TABS ── */
+function switchTab(btn, panelId) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.cases-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+/* ── HAMBURGER ── */
+const ham  = document.getElementById('ham');
+const menu = document.getElementById('mobileMenu');
+function closeMenu() {
+  ham.classList.remove('open'); menu.classList.remove('open');
+  document.body.style.overflow = '';
+}
 ham.addEventListener('click', () => {
-  const isOpen = menu.classList.toggle('open');
-  ham.classList.toggle('open', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
+  const open = menu.classList.toggle('open');
+  ham.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
 });
+window.addEventListener('resize', () => { if (window.innerWidth > 680) closeMenu(); });
 
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 680) closeMenu();
-});
-
-/* ── Scroll reveal ── */
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-  });
-}, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
-
+/* ── SCROLL REVEAL ── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.07, rootMargin: '0px 0px -24px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ── HERO CARD 3D TILT (desktop only) ── */
+const card = document.getElementById('heroCard');
+if (card && window.innerWidth > 1040) {
+  const section = document.querySelector('.hero-section');
+  section.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top  + r.height / 2;
+    const dx = (e.clientX - cx) / r.width;
+    const dy = (e.clientY - cy) / r.height;
+    card.style.transform = `perspective(800px) rotateY(${dx*7}deg) rotateX(${-dy*5}deg) scale(1.01)`;
+  });
+  section.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+}
 </script>
 </body>
 </html>
