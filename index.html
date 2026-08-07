@@ -1008,63 +1008,163 @@ body.en [data-es] { display:none; }
   <div class="footer-right">© 2025 Paz y Dignidad · <span data-en>All Rights Reserved</span><span data-es>Todos los Derechos Reservados</span></div>
 </footer>
 
-<!-- ══ CONTACT MODAL ══ -->
+<!-- ══ INTAKE MODAL ══ -->
 <div id="contact-modal" class="modal-overlay" style="display:none;" onclick="closeContact(event)">
-  <div class="modal-card" onclick="event.stopPropagation()">
+  <div class="modal-card intake-card" onclick="event.stopPropagation()">
     <button class="modal-close" onclick="closeContact()">&times;</button>
 
-    <div class="modal-eyebrow"><span data-en>Get in Touch</span><span data-es>Contáctanos</span></div>
-    <h2 class="modal-title">
-      <span data-en>We respond within 24 hours.</span>
-      <span data-es>Respondemos en 24 horas.</span>
-    </h2>
-    <p class="modal-desc">
-      <span data-en>Fill out this form and a team member will reach out directly. If it's urgent, call or text us.</span>
-      <span data-es>Completa este formulario y un miembro del equipo te contactará directamente. Si es urgente, llámanos o envíanos un mensaje de texto.</span>
-    </p>
+    <!-- header -->
+    <div class="intake-header">
+      <div class="modal-eyebrow">Peace &amp; Dignity Intake Form</div>
+      <h2 class="modal-title" style="font-size:1.35rem;">
+        <span data-en>Detained Person Information</span>
+        <span data-es>Formulario de Información</span>
+      </h2>
+      <p class="modal-desc" style="font-size:13px;">
+        <span data-en>As an organization we understand the importance of maintaining close communication to provide guidance to the families of detained persons. Our team is committed to providing information, accompaniment and support throughout the entire process. This form collects data about the detained person and a contact number for the person filling it out.</span>
+        <span data-es>Como organización entendemos la importancia de mantener una comunicación cercana para brindar orientación a las familias de las personas detenidas. Nuestro equipo está comprometido a ofrecer información, acompañamiento y apoyo durante todo el proceso. El siguiente formulario tiene como objetivo recolectar los datos de la persona detenida y un número de contacto de la persona que llena este formulario.</span>
+      </p>
+    </div>
 
     <div id="contact-form">
+
+      <!-- SECTION 1: Detained person -->
+      <div class="intake-section-hd">
+        <span class="intake-section-num">01</span>
+        <span data-en>About the Detained Person</span>
+        <span data-es>Sobre la Persona Detenida</span>
+      </div>
+
+      <div class="field-row three-col">
+        <div class="field-group">
+          <label class="field-label"><span data-en>First Name *</span><span data-es>Nombre *</span></label>
+          <input type="text" class="field-input" id="cf-det-fname" placeholder="María" required/>
+        </div>
+        <div class="field-group">
+          <label class="field-label"><span data-en>Middle Name</span><span data-es>Segundo Nombre</span></label>
+          <input type="text" class="field-input" id="cf-det-mname" placeholder="Isabel"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label"><span data-en>Last Name(s) *</span><span data-es>Apellido/s *</span></label>
+          <input type="text" class="field-input" id="cf-det-lname" placeholder="García López" required/>
+        </div>
+      </div>
+
       <div class="field-row">
         <div class="field-group">
-          <label class="field-label"><span data-en>First name</span><span data-es>Nombre</span></label>
-          <input type="text" class="field-input" id="cf-fname" placeholder="Maria" autocomplete="given-name"/>
+          <label class="field-label"><span data-en>Date of Birth *</span><span data-es>Fecha de Nacimiento *</span></label>
+          <input type="date" class="field-input" id="cf-dob" required/>
         </div>
         <div class="field-group">
-          <label class="field-label"><span data-en>Last name</span><span data-es>Apellido</span></label>
-          <input type="text" class="field-input" id="cf-lname" placeholder="Lopez" autocomplete="family-name"/>
+          <label class="field-label"><span data-en>Country of Origin *</span><span data-es>País de Origen *</span></label>
+          <input type="text" class="field-input" id="cf-country" placeholder="Guatemala" required/>
         </div>
       </div>
-      <div class="field-group">
-        <label class="field-label">Email</label>
-        <input type="email" class="field-input" id="cf-email" placeholder="maria@example.com" autocomplete="email"/>
-      </div>
-      <div class="field-group">
-        <label class="field-label"><span data-en>Phone (optional)</span><span data-es>Teléfono (opcional)</span></label>
-        <input type="tel" class="field-input" id="cf-phone" placeholder="(206) 555-0100" autocomplete="tel"/>
-      </div>
-      <div class="field-group">
-        <label class="field-label"><span data-en>How can we help?</span><span data-es>¿Cómo podemos ayudar?</span></label>
-        <textarea class="field-input field-textarea" id="cf-msg" placeholder="Tell us about your situation — who is detained, where, and for how long..."></textarea>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">
+            <span data-en>A-Number (Alien Registration #)</span>
+            <span data-es>Número A (Registro de Extranjero)</span>
+          </label>
+          <input type="text" class="field-input" id="cf-anumber" placeholder="A-123 456 789" oninput="fmtANumber(this)"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label"><span data-en>Approx. Date of Detention *</span><span data-es>Fecha Aprox. de Detención *</span></label>
+          <input type="date" class="field-input" id="cf-detdate" required/>
+        </div>
       </div>
 
-      <div id="contact-error" style="display:none;color:#c0392b;font-size:12.5px;margin-top:-0.25rem;margin-bottom:0.5rem;"></div>
+      <div class="field-group">
+        <label class="field-label"><span data-en>Detention Center / Location *</span><span data-es>Centro de Detención o Lugar donde se Encuentra *</span></label>
+        <input type="text" class="field-input" id="cf-location" placeholder="Northwest ICE Processing Center, Tacoma WA" required/>
+      </div>
 
-      <button class="donate-submit" id="contact-submit-btn" onclick="submitContact()" style="margin-top:0.75rem;">
-        <span id="contact-btn-text"><span data-en>Send Message</span><span data-es>Enviar Mensaje</span></span>
+      <!-- SECTION 2: Contact person -->
+      <div class="intake-section-hd">
+        <span class="intake-section-num">02</span>
+        <span data-en>Contact Person (Family / Representative)</span>
+        <span data-es>Contacto del Familiar o Persona Encargada</span>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label"><span data-en>First Name *</span><span data-es>Nombre *</span></label>
+          <input type="text" class="field-input" id="cf-fname" placeholder="Juan" required/>
+        </div>
+        <div class="field-group">
+          <label class="field-label"><span data-en>Last Name *</span><span data-es>Apellido *</span></label>
+          <input type="text" class="field-input" id="cf-lname" placeholder="Pérez" required/>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label"><span data-en>Phone Number *</span><span data-es>Número de Teléfono *</span></label>
+          <input type="tel" class="field-input" id="cf-phone" placeholder="(000) 000-0000" oninput="fmtPhone(this)" required/>
+          <span class="field-hint">Format: (000) 000-0000</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Email <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+          <input type="email" class="field-input" id="cf-email" placeholder="juan@example.com"/>
+        </div>
+      </div>
+
+      <!-- SECTION 3: Situation -->
+      <div class="intake-section-hd">
+        <span class="intake-section-num">03</span>
+        <span data-en>Description &amp; Request</span>
+        <span data-es>Descripción y Solicitud</span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label"><span data-en>Brief description of the situation or the help requested *</span><span data-es>Incluya una breve descripción de la situación o la ayuda que solicita *</span></label>
+        <textarea class="field-input field-textarea" id="cf-msg" style="min-height:110px;" placeholder="Describe the situation, how long they've been detained, any hearings scheduled, or what kind of help you need..." required></textarea>
+      </div>
+
+      <!-- SECTION 4: Consent -->
+      <div class="intake-section-hd">
+        <span class="intake-section-num">04</span>
+        <span data-en>Data &amp; Privacy</span>
+        <span data-es>Datos y Privacidad</span>
+      </div>
+
+      <label class="consent-item" id="consent-wrap">
+        <input type="checkbox" id="cf-consent" class="check-input"/>
+        <span>
+          <span data-en>I agree to allow Paz y Dignidad to store this information in their secure database for the purpose of providing legal support and case follow-up. This information will not be shared with third parties.</span>
+          <span data-es>Acepto que Paz y Dignidad almacene esta información en su base de datos segura con el propósito de brindar apoyo legal y seguimiento del caso. Esta información no será compartida con terceros.</span>
+        </span>
+      </label>
+
+      <div id="contact-error" style="display:none;"></div>
+
+      <button class="donate-submit" id="contact-submit-btn" onclick="submitContact()" style="margin-top:1.25rem;">
+        <span id="contact-btn-text"><span data-en>Submit Intake Form</span><span data-es>Enviar Formulario</span></span>
         <span id="contact-spinner" style="display:none;">⏳</span>
+      </button>
+
+      <p style="font-size:11.5px;color:var(--gray2);text-align:center;margin-top:0.75rem;line-height:1.6;">
+        <span data-en>Submitted directly to <strong>infundepeace@gmail.com</strong> · Stored securely in our case database</span>
+        <span data-es>Enviado directamente a <strong>infundepeace@gmail.com</strong> · Almacenado de forma segura en nuestra base de datos</span>
+      </p>
+    </div>
+
+    <!-- success -->
+    <div id="contact-success" style="display:none;text-align:center;padding:2.5rem 0 1rem;">
+      <div style="font-size:3.5rem;margin-bottom:1rem;">✅</div>
+      <h3 style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:0.6rem;">
+        <span data-en>Form received.</span><span data-es>Formulario recibido.</span>
+      </h3>
+      <p style="font-size:14px;color:var(--gray);line-height:1.75;max-width:340px;margin:0 auto 1.5rem;">
+        <span data-en>Our team will review this case and reach out to the contact person within 24 hours. For urgent matters, email <strong>infundepeace@gmail.com</strong> directly.</span>
+        <span data-es>Nuestro equipo revisará este caso y se comunicará con la persona de contacto en 24 horas. Para asuntos urgentes, escribe directamente a <strong>infundepeace@gmail.com</strong>.</span>
+      </p>
+      <button class="donate-submit" style="max-width:240px;margin:0 auto;" onclick="closeContactSuccess()">
+        <span data-en>Close</span><span data-es>Cerrar</span>
       </button>
     </div>
 
-    <div id="contact-success" style="display:none;text-align:center;padding:2rem 0 1rem;">
-      <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
-      <h3 style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:0.6rem;">
-        <span data-en>Message sent.</span><span data-es>Mensaje enviado.</span>
-      </h3>
-      <p style="font-size:14px;color:var(--gray);line-height:1.7;">
-        <span data-en>We'll reach out to you within 24 hours. If it's urgent, email us directly at <strong>infundepaz@gmail.com</strong></span>
-        <span data-es>Nos comunicaremos contigo en 24 horas. Si es urgente, escríbenos directamente a <strong>infundepaz@gmail.com</strong></span>
-      </p>
-    </div>
   </div>
 </div>
 
@@ -1386,6 +1486,44 @@ body.en [data-es] { display:none; }
 
 
 <style>
+/* ── INTAKE FORM EXTRAS ── */
+.intake-card { max-width:640px; }
+.intake-header { margin-bottom:1.5rem; padding-bottom:1.25rem; border-bottom:1px solid var(--border); }
+
+.intake-section-hd {
+  display:flex; align-items:center; gap:0.65rem;
+  font-size:11px; font-weight:800; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--ink); margin:1.5rem 0 1rem;
+}
+.intake-section-num {
+  width:22px; height:22px; border-radius:50%;
+  background:var(--y); color:var(--ink);
+  font-size:10px; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+
+.three-col { grid-template-columns:1fr 1fr 1.2fr !important; }
+
+.field-hint { font-size:10.5px; color:var(--gray2); margin-top:0.2rem; }
+
+.consent-item {
+  display:flex; align-items:flex-start; gap:0.75rem;
+  font-size:12.5px; color:var(--gray); line-height:1.65; cursor:pointer;
+  background:var(--surface); border:1.5px solid var(--border);
+  border-radius:12px; padding:1rem 1.1rem; margin-top:0.25rem;
+  transition:border-color 0.18s, background 0.18s;
+}
+.consent-item:has(.check-input:checked) { border-color:var(--g); background:var(--g-dim); }
+.consent-item .check-input { margin-top:2px; flex-shrink:0; }
+
+#contact-error {
+  background:#fff0f0; border:1.5px solid #f5c6c6;
+  border-radius:10px; padding:0.75rem 1rem;
+  color:#c0392b; font-size:12.5px; line-height:1.6;
+  margin-top:0.5rem;
+}
+
 /* ════ CONTACT MODAL ════ */
 .modal-overlay {
   position:fixed; inset:0; z-index:800;
@@ -1624,63 +1762,142 @@ body.en [data-es] { display:none; }
 </style>
 
 <script>
-/* ── CONTACT MODAL ── */
+/* ── INTAKE FORM ── */
+// ⚠️  SETUP: go to formspree.io → New Form → copy your endpoint below
+// It will send every submission to infundepeace@gmail.com AND store it in your Formspree dashboard
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mgawvnll';
+
+function fmtPhone(el) {
+  let v = el.value.replace(/\D/g,'').substring(0,10);
+  if (v.length >= 7)      v = '(' + v.substring(0,3) + ') ' + v.substring(3,6) + '-' + v.substring(6);
+  else if (v.length >= 4) v = '(' + v.substring(0,3) + ') ' + v.substring(3);
+  else if (v.length >= 1) v = '(' + v;
+  el.value = v;
+}
+
+function fmtANumber(el) {
+  let v = el.value.replace(/[^0-9]/g,'').substring(0,9);
+  if (v.length > 3) v = 'A-' + v.substring(0,3) + ' ' + v.substring(3,6) + (v.length > 6 ? ' ' + v.substring(6) : '');
+  else if (v.length > 0) v = 'A-' + v;
+  el.value = v;
+}
+
 function openContact() {
   const modal = document.getElementById('contact-modal');
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
-  // reset
   document.getElementById('contact-form').style.display    = 'block';
   document.getElementById('contact-success').style.display = 'none';
   document.getElementById('contact-error').style.display   = 'none';
   document.getElementById('contact-btn-text').style.display = 'inline';
   document.getElementById('contact-spinner').style.display  = 'none';
-  const btn = document.getElementById('contact-submit-btn');
-  btn.disabled = false;
+  document.getElementById('contact-submit-btn').disabled    = false;
 }
+
 function closeContact(e) {
   if (e && e.target !== document.getElementById('contact-modal')) return;
   document.getElementById('contact-modal').style.display = 'none';
   document.body.style.overflow = '';
 }
+
+function closeContactSuccess() {
+  document.getElementById('contact-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { document.getElementById('contact-modal').style.display = 'none'; document.body.style.overflow = ''; }
+  if (e.key === 'Escape') {
+    document.getElementById('contact-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
 });
 
-function submitContact() {
-  const fname = document.getElementById('cf-fname').value.trim();
-  const email = document.getElementById('cf-email').value.trim();
-  const msg   = document.getElementById('cf-msg').value.trim();
+async function submitContact() {
   const errEl = document.getElementById('contact-error');
+  errEl.style.display = 'none';
 
-  if (!fname || !email || !msg) {
-    errEl.textContent = document.body.classList.contains('es')
-      ? 'Por favor completa tu nombre, email y mensaje.'
-      : 'Please fill in your name, email, and message.';
+  // collect values
+  const fields = {
+    '-- DETAINED PERSON --':      '---',
+    'First Name':                  document.getElementById('cf-det-fname').value.trim(),
+    'Middle Name':                 document.getElementById('cf-det-mname').value.trim(),
+    'Last Name(s)':                document.getElementById('cf-det-lname').value.trim(),
+    'Date of Birth':               document.getElementById('cf-dob').value,
+    'Country of Origin':           document.getElementById('cf-country').value.trim(),
+    'A-Number':                    document.getElementById('cf-anumber').value.trim(),
+    'Date of Detention (approx)':  document.getElementById('cf-detdate').value,
+    'Detention Center / Location': document.getElementById('cf-location').value.trim(),
+    '-- CONTACT PERSON --':        '---',
+    'Contact First Name':          document.getElementById('cf-fname').value.trim(),
+    'Contact Last Name':           document.getElementById('cf-lname').value.trim(),
+    'Contact Phone':               document.getElementById('cf-phone').value.trim(),
+    'Contact Email':               document.getElementById('cf-email').value.trim(),
+    '-- SITUATION --':             '---',
+    'Description / Request':       document.getElementById('cf-msg').value.trim(),
+    'Consent to Database':         document.getElementById('cf-consent').checked ? 'YES — consented' : 'NO — did not consent',
+  };
+
+  // required check
+  const required = ['First Name','Last Name(s)','Date of Birth','Country of Origin',
+                     'Date of Detention (approx)','Detention Center / Location',
+                     'Contact First Name','Contact Last Name','Contact Phone','Description / Request'];
+  const missing = required.filter(k => !fields[k] || fields[k] === '---');
+
+  if (missing.length) {
+    const isEs = document.body.classList.contains('es');
+    errEl.innerHTML = isEs
+      ? '⚠️ Por favor completa todos los campos obligatorios (*) antes de enviar.'
+      : '⚠️ Please fill in all required fields (*) before submitting.';
+    errEl.style.display = 'block';
+    errEl.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
+  if (!document.getElementById('cf-consent').checked) {
+    const isEs = document.body.classList.contains('es');
+    errEl.innerHTML = isEs
+      ? '⚠️ Debes aceptar el consentimiento para almacenar los datos antes de enviar.'
+      : '⚠️ You must consent to data storage before submitting.';
     errEl.style.display = 'block';
     return;
   }
-  errEl.style.display = 'none';
 
-  const btn = document.getElementById('contact-submit-btn');
+  // disable + show spinner
   document.getElementById('contact-btn-text').style.display = 'none';
   document.getElementById('contact-spinner').style.display  = 'inline';
-  btn.disabled = true;
+  document.getElementById('contact-submit-btn').disabled    = true;
 
-  // Build mailto link and fire it, then show success
-  const lname   = document.getElementById('cf-lname').value.trim();
-  const phone   = document.getElementById('cf-phone').value.trim();
-  const subject = encodeURIComponent('Contact Form — Paz y Dignidad');
-  const body    = encodeURIComponent(
-    `Name: ${fname} ${lname}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\n\nMessage:\n${msg}`
-  );
-  const mailLink = `mailto:infundepaz@gmail.com?subject=${subject}&body=${body}`;
-  window.location.href = mailLink;
+  // build payload for Formspree
+  // Formspree will email all these fields to infundepeace@gmail.com
+  const payload = {};
+  Object.entries(fields).forEach(([k,v]) => { if (v !== '---') payload[k] = v || '(not provided)'; });
+  payload['_subject'] = `🆕 Paz y Dignidad Intake — ${fields['First Name']} ${fields['Last Name(s)']}`;
+  payload['_replyto'] = fields['Contact Email'] || 'no-reply@pazydignidad.org';
 
-  setTimeout(() => {
+  try {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (res.ok) {
+      document.getElementById('contact-form').style.display    = 'none';
+      document.getElementById('contact-success').style.display = 'block';
+    } else {
+      throw new Error('Formspree returned ' + res.status);
+    }
+  } catch(err) {
+    // fallback: open mailto so nothing is lost
+    const body = Object.entries(fields)
+      .map(([k,v]) => `${k}: ${v}`)
+      .join('\n');
+    const subject = encodeURIComponent(`Intake Form — ${fields['First Name']} ${fields['Last Name(s)']}`);
+    window.location.href = `mailto:infundepeace@gmail.com?subject=${subject}&body=${encodeURIComponent(body)}`;
+
     document.getElementById('contact-form').style.display    = 'none';
     document.getElementById('contact-success').style.display = 'block';
-  }, 900);
+  }
 }
 
 /* ── PAGE ROUTER ── */
