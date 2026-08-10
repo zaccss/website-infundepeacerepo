@@ -220,8 +220,18 @@ nav {
   transition:transform 0.22s cubic-bezier(0.22,1,0.36,1);
 }
 .hero-card-row:hover::before { transform:scaleY(1); }
-.h-num   { font-size:3rem; font-weight:800; color:var(--y); line-height:1; letter-spacing:-0.05em; }
+/* ── NUMBER COUNTER ANIMATION ── */
+.h-num { font-size:3rem; font-weight:800; color:var(--y); line-height:1; letter-spacing:-0.05em; }
 .h-num span { font-size:1.6rem; }
+
+@keyframes numBounce {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.18); }
+  65%  { transform: scale(0.95); }
+  80%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.h-num.bouncing { animation: numBounce 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
 .h-label { font-size:9.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-top:0.3rem; }
 .h-desc  { font-size:12.5px; color:rgba(255,255,255,0.42); margin-top:0.2rem; line-height:1.5; }
 
@@ -616,12 +626,12 @@ body.en [data-es] { display:none; }
 
     <div class="hero-card reveal d2" id="heroCard">
       <div class="hero-card-row">
-        <div class="h-num">5</div>
+        <div class="h-num">35</div>
         <div class="h-label"><span data-en>People Released</span><span data-es>Personas Liberadas</span></div>
         <div class="h-desc"><span data-en>Freed from ICE detention through our legal advocacy</span><span data-es>Liberadas de la detención del ICE mediante nuestra defensa legal</span></div>
       </div>
       <div class="hero-card-row">
-        <div class="h-num">50<span>+</span></div>
+        <div class="h-num">150<span>+</span></div>
         <div class="h-label"><span data-en>Active Cases</span><span data-es>Casos Activos</span></div>
         <div class="h-desc"><span data-en>Fighting for release right now</span><span data-es>Luchando por su liberación ahora mismo</span></div>
       </div>
@@ -801,7 +811,7 @@ body.en [data-es] { display:none; }
       </p>
       <div style="display:flex;flex-direction:column;gap:0.6rem;flex-shrink:0;">
         <a class="btn-dark" href="https://tinyurl.com/Habeas-Intake" target="_blank" rel="noopener">
-          <span data-en>Start Intake Form</span><span data-es>Iniciar Formulario</span>
+          <span data-en>Start PBC Intake Form ↗</span><span data-es>Iniciar Formulario PBC ↗</span>
         </a>
         <a class="btn-dark" href="tel:2066508568" style="background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);">
           📞 206-650-8568
@@ -1964,7 +1974,53 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.07, rootMargin: '0px 0px -24px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* ── HERO TILT ── */
+/* ── NUMBER COUNT-UP ── */
+function animateCounter(el, target, suffix, duration) {
+  const start = 0;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed  = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // ease out expo
+    const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+    const current = Math.round(eased * target);
+    el.innerHTML = current + (suffix ? `<span>${suffix}</span>` : '');
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      // bounce when it hits the final number
+      el.classList.add('bouncing');
+      el.addEventListener('animationend', () => el.classList.remove('bouncing'), { once: true });
+    }
+  }
+  requestAnimationFrame(update);
+}
+
+// observe the hero card and trigger once it enters view
+const counterTargets = [
+  { selector: '.hero-card-row:nth-child(1) .h-num', target: 35,  suffix: '',  duration: 1800 },
+  { selector: '.hero-card-row:nth-child(2) .h-num', target: 150, suffix: '+', duration: 2200 },
+  { selector: '.hero-card-row:nth-child(3) .h-num', target: 10,  suffix: '+', duration: 1400 },
+];
+
+let countersStarted = false;
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !countersStarted) {
+      countersStarted = true;
+      counterTargets.forEach(({ selector, target, suffix, duration }) => {
+        const el = document.querySelector(selector);
+        if (el) animateCounter(el, target, suffix, duration);
+      });
+      counterObserver.disconnect();
+    }
+  });
+}, { threshold: 0.4 });
+
+const heroCardEl = document.getElementById('heroCard');
+if (heroCardEl) counterObserver.observe(heroCardEl);
 const heroCard = document.getElementById('heroCard');
 if (heroCard && window.innerWidth > 1040) {
   const heroSection = document.querySelector('.hero-section');
